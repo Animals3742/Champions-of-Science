@@ -2648,7 +2648,7 @@ function resolveEvent(c){
       done();break;
     case 's_ev_escape':
       G.pendingAttackEvents=G.pendingAttackEvents||[];
-      G.pendingAttackEvents.push({tipo:'unica',base:3,bonusSiAlta:0,src:'Escape de Alemania',crisisSiMuere:1});
+      G.pendingAttackEvents.push({tipo:'unica',base:3,bonusSiAlta:0,src:'Escape de Alemania',crisisSiMuere:1,directo:true});
       log('Escape de Alemania: se resolverá durante tu próximo ataque (3 de daño directo; si la Amenaza cae, Crisis -1).','lg-good');
       done();break;
     case 's_ev_incert':
@@ -2657,7 +2657,7 @@ function resolveEvent(c){
       done();break;
     case 'c_ev_radio':
       G.pendingAttackEvents=G.pendingAttackEvents||[];
-      G.pendingAttackEvents.push({tipo:'unica',base:3,bonusSiAlta:0,src:'Descubrimiento del Radio',crisisSiMuere:1});
+      G.pendingAttackEvents.push({tipo:'unica',base:3,bonusSiAlta:0,src:'Descubrimiento del Radio',crisisSiMuere:1,directo:true});
       log('Descubrimiento del Radio: se resolverá en tu próximo ataque (3 de daño; si la Amenaza cae, Crisis −1).','lg-good');
       done();break;
     case 'c_ev_teoria':
@@ -2670,7 +2670,7 @@ function resolveEvent(c){
       curProgramar(c);done();break;
     case 'c_lg_legado':
       bigCine('v-leg','⭐','Evento Legendario',c.n,1900,false);
-      crisisDown(2,'Legado de Marie Curie');healSci(2,'Legado de Marie Curie');draw(1,'Legado de Marie Curie');
+      crisisDown(2,'Legado de Marie Curie');curParaTodos(function(activo){healSci(2,'Legado de Marie Curie');if(activo)draw(1,'Legado de Marie Curie');else if(drawSilent())log('Roba 1 carta (Legado de Marie Curie).','lg-info')});
       done();break;
     case 's_lg_destino':
       bigCine('v-leg','⭐','Evento Legendario',c.n,1900,false);
@@ -2724,7 +2724,7 @@ function resolverEventosDeAtaque(t){
   pendientes.forEach(pe=>{
     if(pe.tipo==='unica'){
       const d=pe.base+(G.crisis>6?pe.bonusSiAlta:0);
-      damageThreat(t,d,pe.src);
+      if(pe.directo)G.escSinResistencia=true;damageThreat(t,d,pe.src);G.escSinResistencia=false;
       if(pe.crisisSiMuere&&G.threats.indexOf(t)<0)crisisDown(pe.crisisSiMuere,pe.src);
       if(pe.neutraliza&&G.threats.indexOf(t)>=0){t.neutral=G.round+1;log(t.n+' queda Neutralizada hasta el final de la ronda '+(G.round+1)+'.','lg-good')}
     } else if(pe.tipo==='todas'){
@@ -3072,8 +3072,9 @@ function askChoice(title,desc,opts,cb){
     btn.onclick=()=>{document.getElementById('modal').classList.remove('show');cb(i)};b.appendChild(btn)});
   document.getElementById('modal').classList.add('show');
 }
-let threatSelectCb=null;
+let threatSelectCb=null,threatSelectFiltro=null;
 function selectThreat(desc,cb,forzarClic,filtro){
+  threatSelectFiltro=filtro||null;
   let valid=G.threats.filter(t=>escObjetivo(t));
   if(filtro)valid=valid.filter(filtro);
   if(!valid.length){log('Sin objetivos válidos.','lg-info');G.selectedAttacker=null;render();return}
@@ -3918,7 +3919,7 @@ function render(){
     zt.innerHTML='';
     G.threats.forEach(t=>{
       const d=document.createElement('div');
-      const sel=threatSelectCb&&escObjetivo(t);
+      const sel=threatSelectCb&&escObjetivo(t)&&(!threatSelectFiltro||threatSelectFiltro(t));
       d.className='threat'+(t.principal?' principal':'')+(sel?' selectable':'')+(t.justRevealed?' reveal':'');
       if(d.setAttribute)d.setAttribute('data-tid',(t._uid||t.id));
       const face=caraDe(t);
@@ -5004,8 +5005,8 @@ const _curDmg=dmgSci;
 dmgSci=function(n,src){
   if(esCur()&&!G.over&&n>0){
     if(curTiene('mejoras','c_mj_persev')&&!G.curPersev){G.curPersev=true;n-=1;log('Perseverancia: el daño se reduce en 1.','lg-good')}
-    if(n>0&&!G.curRad){G.curRad=true;n-=1;log('☢ Radiación controlada: el daño se reduce en 1.','lg-good');if(typeof flashUid==='function')flashUid('sci')}
     if(n<=0){log('No recibes daño ('+src+').','lg-good');render();return}
+    if(!G.curRad)return curRadDano(n,src,_curDmg);
   }
   _curDmg(n,src);
 };
@@ -5013,11 +5014,7 @@ const _curUp=crisisUp;
 crisisUp=function(n,src){
   const bloq=G.threats&&G.threats.find(function(t){return t.sinCrisis&&G.round<=t.sinCrisis&&String(src).indexOf(t.n)===0});
   if(bloq&&n>0){log('Aislamiento del Radio: '+bloq.n+' no puede aumentar la Crisis.','lg-good');render();return}
-  if(esCur()&&!G.over&&n>0&&!G.curRad&&curEsAmenaza(src)){
-    G.curRad=true;n-=1;log('☢ Radiación controlada: el aumento de Crisis se reduce en 1.','lg-good');
-    if(typeof flashUid==='function')flashUid('sci');
-    if(n<=0){render();return}
-  }
+  if(esCur()&&!G.over&&n>0&&!G.curRad&&curEsAmenaza(src))return curRadCrisis(n,src,_curUp);
   _curUp(n,src);
 };
 const _curInt=eInt;
@@ -5052,7 +5049,7 @@ log=function(t,cls){
   const nom=s.slice(9).replace(/ \(\d+ energía\).*$/,'');
   const c=mazoActual().find(function(x){return x.n===nom});
   if(c&&c.t==='evento')G.curLabEv=true;
-  if(curTiene('mejoras','c_mj_colab')&&!G.curColab){G.curColab=true;setTimeout(function(){draw(1,'Investigación colaborativa');render()},0)}
+  curColabJugada(nom);
   if(apoyoEq('c_ap_solvay')&&!G.curSolvay){G.curSolvay=true;setTimeout(function(){draw(1,'Conferencias de Solvay');render()},0)}
 };
 
@@ -6269,9 +6266,9 @@ function mpProcesar(cb){
   const vuelta=MP.idx;
   TX=null;
   mpActivar(r.i);
-  log('⚡ Reacción fuera de turno · J'+j.num+' '+sciActual().n+': '+r.tit,'lg-phase');
+  log((r.i===vuelta?'⚡ Reacción · J':'⚡ Reacción fuera de turno · J')+j.num+' '+sciActual().n+': '+r.tit,'lg-phase');
   actualizarSubtitulo();render();
-  aviso('Reacciona J'+j.num+' · '+sciActual().n+': '+r.tit);
+  if(r.i!==vuelta)aviso('Reacciona J'+j.num+' · '+sciActual().n+': '+r.tit);
   let hecho=false;
   const volver=function(){
     if(hecho)return;hecho=true;
@@ -6299,13 +6296,16 @@ crisisUp=function(n,src){
   if(curEsAmenaza(src)&&!(G.threats&&G.threats.find(function(t){return t.sinCrisis&&G.round<=t.sinCrisis&&String(src).indexOf(t.n)===0}))){
     const ic=mpOtros('curie').find(function(i){return !MP.jugadores[i].st.curRad});
     if(ic!==undefined){
-      MP.jugadores[ic].st.curRad=true;n-=1;
-      log('☢ Radiación controlada (J'+(ic+1)+' · Marie Curie, fuera de turno): el aumento de Crisis se reduce en 1.','lg-good');
-      if(n<=0){render();return}
+      MP.jugadores[ic].st.curRad=true;
+      if(G.crisis+n>=14){
+        n-=1;log('☢ Radiación controlada (J'+(ic+1)+' · Marie Curie, fuera de turno) evita la derrota: el aumento de Crisis se reduce en 1.','lg-good');
+        if(n<=0){render();return}
+      } else var curPend={i:ic,n:n,src:src};
     }
   }
   const antes=G.crisis;
   _mpUpR(n,src);
+  if(typeof curPend!=='undefined'&&curPend&&!G.over)curRadEncolar(curPend.i,curPend.n,curPend.src);
   const sube=G.crisis-antes;
   if(G.over)return;
   if(sube>=2)mpOtros('schrodinger').forEach(function(i){
@@ -6511,6 +6511,272 @@ function mp4MarcarAtacantes(){
   });
 }
 render=(function(o){return function(){o();try{mp4MarcarAtacantes()}catch(e){}}})(render);
+
+
+// =====================================================================
+// ================= CALIBRACIÓN DEL MAZO DE MARIE CURIE ================
+// =====================================================================
+// Todo se ajusta al texto impreso de cada carta.
+
+// ---------- Utilidades: elegir y afectar a «un científico» / «todos los científicos» ----------
+function curVivos(){return MP.jugadores.map(function(j,i){return i}).filter(function(i){return !MP.jugadores[i].caido})}
+function curElegirCientifico(titulo,desc,cb){
+  if(mpN()<2)return cb(MP.idx);
+  const v=curVivos();
+  if(v.length===1)return cb(v[0]);
+  askChoice(titulo,desc||'Elige el científico:',v.map(function(i){
+    const s=mpFicha(i);return 'J'+(i+1)+' · '+mpCorto(MP.jugadores[i].carpeta)+' ('+Math.max(0,s.life)+'/'+s.maxLife+')'+(i===MP.idx?' · tú':'')}),
+    function(k){cb(v[k])});
+}
+function curEn(i,fn){                       // ejecuta fn sobre la ficha del científico i
+  if(i===MP.idx)return fn(true);
+  const v=MP.idx;mpActivar(i);
+  try{fn(false)}finally{mpActivar(v)}
+  render();
+}
+function curCurar(i,n,src){curEn(i,function(){healSci(n,src)})}
+function curParaTodos(fn){
+  fn(true);
+  if(mpN()<2)return;
+  curVivos().forEach(function(i){if(i!==MP.idx&&!G.over)curEn(i,fn)});
+  render();
+}
+
+// ---------- Radiación controlada: una vez por turno, elige reducir o robar ----------
+function curRadDano(n,src,aplicar){
+  G.curRad=true;
+  if(typeof flashUid==='function')flashUid('sci');
+  if($id('modal').classList.contains('show')){            // ya hay una decisión abierta: se aplica lo más seguro
+    log('☢ Radiación controlada: el daño se reduce en 1.','lg-good');
+    if(n-1>0)aplicar(n-1,src);else{log('No recibes daño ('+src+').','lg-good');render()}
+    return;
+  }
+  askChoice('☢ Radiación controlada',
+    sciActual().n+' va a recibir '+n+' de daño ('+src+'). Una vez por turno puedes:',
+    ['Reducir el daño en 1 (recibes '+(n-1)+')','Robar 1 carta (recibes '+n+')','No usarla ahora'],
+    function(k){
+      if(k===0){log('☢ Radiación controlada: el daño se reduce en 1.','lg-good');if(n-1>0)aplicar(n-1,src);else log('No recibes daño ('+src+').','lg-good')}
+      else if(k===1){aplicar(n,src);if(!G.over){log('☢ Radiación controlada: robas 1 carta.','lg-good');draw(1,'Radiación controlada')}}
+      else{G.curRad=false;log('Radiación controlada: no se usa esta vez.','lg-info');aplicar(n,src)}
+      render();
+    });
+}
+function curRadCrisis(n,src,aplicar){
+  G.curRad=true;
+  if(typeof flashUid==='function')flashUid('sci');
+  if(G.crisis+n>=14){                       // si la Crisis llegaría a 14, se usa para evitar la derrota
+    n-=1;log('☢ Radiación controlada evita la derrota: el aumento de Crisis se reduce en 1.','lg-good');
+    if(n>0)aplicar(n,src);else render();
+    return;
+  }
+  aplicar(n,src);
+  if(!G.over)curRadEncolar(MP.idx,n,src);
+}
+// La decisión sobre la Crisis se toma en cuanto el juego queda en calma (o antes del turno siguiente)
+function curRadEncolar(i,n,src){
+  mpEncolar(i,'Radiación controlada',function(done){
+    askChoice('☢ Radiación controlada',
+      src+' aumentó la Crisis Global en '+n+'. Una vez por turno, Marie Curie puede:',
+      ['Reducir ese aumento en 1','Robar 1 carta','No usarla ahora'],
+      function(k){
+        if(k===0)crisisDown(1,'Radiación controlada');
+        else if(k===1){log('☢ Radiación controlada: robas 1 carta.','lg-good');draw(1,'Radiación controlada')}
+        else{G.curRad=false;log('Radiación controlada: no se usa esta vez.','lg-info')}
+        render();mpEsperarCalma(done);
+      });
+  });
+}
+// «Una vez por turno»: se recarga en cada turno (cada turno del tablero abre un turno nuevo)
+const _curRadCP=crisisPhase;
+crisisPhase=function(){
+  if(!MP.armando&&!MP.enEspera){
+    if(G)G.curRad=false;
+    MP.jugadores.forEach(function(j){if(j.st)j.st.curRad=false});
+  }
+  return _curRadCP();
+};
+
+// ---------- Eventos «Al inicio de tu turno»: se resuelven en el turno SIGUIENTE al que se jugaron ----------
+MP.turnoN=0;
+const _curTurnoStart=startTurn;
+startTurn=function(){MP.turnoN++;return _curTurnoStart()};
+curProgramar=function(c){
+  G.programadas=G.programadas||[];G.programadas.push({id:c.id,n:c.n,t:MP.turnoN});
+  log('⏳ '+c.n+': se resolverá al inicio de tu próximo turno.','lg-good');
+};
+curieProgramadas=function(){
+  G.threats.forEach(function(t){if(t.sinCrisis&&G.round>=t.sinCrisis)delete t.sinCrisis});
+  const seguir=function(){
+    if(!G.programadas||!G.programadas.length)return render();
+    const listas=G.programadas.filter(function(p){return (p.t||0)<MP.turnoN});
+    G.programadas=G.programadas.filter(function(p){return (p.t||0)>=MP.turnoN});
+    if(!listas.length)return render();
+    (function sig(){
+      const p=listas.shift();
+      if(!p||G.over){render();return}
+      log('⏳ Se resuelve '+p.n+'.','lg-phase');
+      try{curEjecutar(p,sig)}catch(e){sig()}
+    })();
+  };
+  // Cuaderno de investigación: al inicio de tu turno (automático)
+  if(curTiene('apoyos','c_ap_cuaderno')&&G.deck.length>=2&&!G.curCuaderno&&!G.over){
+    G.curCuaderno=true;
+    const a=G.apoyos.find(function(x){return x.id==='c_ap_cuaderno'});
+    if(a&&typeof usaHabilidad==='function')usaHabilidad(a,'INICIO DE TURNO');
+    const top=[G.deck[G.deck.length-1],G.deck[G.deck.length-2]];
+    log('📓 Cuaderno de investigación: miras las 2 primeras cartas de tu Mazo.','lg-phase');
+    pickCards(top,1,1,'Cuaderno de investigación: elige la carta que queda arriba de tu Mazo (la otra va al fondo)',function(sel){
+      const arriba=sel[0],abajo=top.find(function(x){return x!==arriba});
+      G.deck.splice(G.deck.indexOf(arriba),1);G.deck.splice(G.deck.indexOf(abajo),1);
+      G.deck.unshift(abajo);G.deck.push(arriba);
+      log('Cuaderno de investigación: '+arriba.n+' queda arriba; '+abajo.n+' va al fondo.','lg-good');
+      render();seguir();
+    });
+    return;
+  }
+  seguir();
+};
+const _curUA2=useApoyo;
+useApoyo=function(a){
+  if(a&&a.id==='c_ap_cuaderno'){log('Cuaderno de investigación se activa solo, al inicio de tu turno.','lg-info');return}
+  return _curUA2(a);
+};
+
+curEjecutar=function(p,done){
+  switch(p.id){
+    case 'c_ev_polonio':{
+      const secs=G.threats.filter(function(t){return !t.principal});
+      if(!secs.length){log('Descubrimiento del polonio: no hay Amenazas secundarias.','lg-info');return done()}
+      selectThreat('Descubrimiento del polonio: elige la Amenaza secundaria que se elimina',function(t){
+        if(t.principal||G.threats.indexOf(t)<0){log('El polonio solo elimina Amenazas secundarias.','lg-info');return done()}
+        const vida=Math.max(0,t.hp-(t.dmg||0));
+        if(typeof explodeThreat==='function')explodeThreat(t);
+        G.threats.splice(G.threats.indexOf(t),1);G.threatGrave.push(t);
+        log('☠ '+t.n+' ELIMINADA por el Descubrimiento del polonio (tenía '+vida+' de vida).','lg-good');
+        if(t.onDeath)t.onDeath();
+        if(vida>=3&&!G.over)draw(1,'Descubrimiento del polonio');
+        checkEnd();render();done();
+      },true,function(t){return !t.principal});
+      break}
+    case 'c_ev_nobel1':G.energy+=3;log('Primer Premio Nobel: +3 de Energía.','lg-good');draw(1,'Primer Premio Nobel');render();done();break;
+    case 'c_ev_nobel2':{
+      // Cada científico recupera 1 carta de su pila de descarte
+      const propio=function(fin){
+        if(!G.grave.length){log('Segundo Premio Nobel: tu Cementerio está vacío.','lg-info');return fin()}
+        pickCards(G.grave,1,1,'Segundo Premio Nobel: '+sciActual().n+' recupera 1 carta de su Cementerio',function(sel){
+          const x=sel[0];G.grave.splice(G.grave.indexOf(x),1);G.hand.push(x);x._justDrawn=true;
+          if(typeof fly==='function')fly(x,'grave','hand',0,500);
+          log('Segundo Premio Nobel: '+x.n+' vuelve a la mano de '+sciActual().n+'.','lg-good');render();fin();
+        });
+      };
+      propio(function(){
+        if(mpN()>1)curVivos().forEach(function(i){
+          if(i===MP.idx)return;
+          if(!(MP.jugadores[i].st.grave||[]).length){log('Segundo Premio Nobel: el Cementerio de J'+(i+1)+' está vacío.','lg-info');return}
+          mpEncolar(i,'Segundo Premio Nobel',function(d){propio(function(){mpEsperarCalma(d)})});
+        });
+        done();
+      });
+      break}
+    case 'c_ev_rayosx':
+      curElegirCientifico('Rayos X en el Frente','¿Qué científico recupera 4 de vida? Si eliges a otro jugador, robas 1 carta.',function(i){
+        const otro=i!==MP.idx;
+        curCurar(i,4,'Rayos X en el Frente');
+        if(otro&&!G.over)draw(1,'Rayos X en el Frente (curaste a otro jugador)');
+        render();done();
+      });
+      break;
+    case 'c_ev_incansable':
+      draw(2,'Investigación incansable');render();
+      if(!G.hand.length)return done();
+      pickCards(G.hand,1,1,'Investigación incansable: descarta 1 carta de tu mano',function(sel){
+        const x=sel[0];G.hand.splice(G.hand.indexOf(x),1);G.grave.push(x);
+        if(typeof fly==='function')fly(x,'hand','grave',0,480);
+        log('Descartas '+x.n+'.','lg-info');render();done();
+      });break;
+    case 'c_ev_conferencia':crisisDown(2,'Conferencia científica');render();done();break;
+    case 'c_ev_aislamiento':
+      if(!G.threats.length){log('Aislamiento del Radio: no hay Amenazas en juego.','lg-info');return done()}
+      selectThreat('Aislamiento del Radio: elige la Amenaza que no podrá aumentar la Crisis',function(t){
+        t.sinCrisis=G.round+1;log('Aislamiento del Radio: '+t.n+' no aumentará la Crisis hasta tu próximo turno.','lg-good');render();done();
+      },true);break;
+    default:done();
+  }
+};
+
+// ---------- Aliados: «un científico» recupera vida ----------
+const _curAs2=useAsignar;
+useAsignar=function(a){
+  if(!a||(a.id!=='c_al_irene'&&a.id!=='c_al_regaud'))return _curAs2(a);
+  if(a.agotada){log(a.n+' está agotado.','lg-info');return}
+  if(a.id==='c_al_irene'){
+    if(typeof usaHabilidad==='function')usaHabilidad(a,'ASIGNAR');
+    a.agotada=true;crisisDown(1,'Irène Joliot-Curie');
+    const intCurie=esCur()?eInt():0;
+    if(intCurie>=5){
+      curElegirCientifico('Irène Joliot-Curie','Marie Curie tiene '+intCurie+' de Intelecto: ¿qué científico recupera 2 de vida?',function(i){curCurar(i,2,'Irène Joliot-Curie');render()});
+    } else {log('Irène Joliot-Curie: Marie Curie tiene '+intCurie+' de Intelecto (necesita 5) — sin curación.','lg-info');render()}
+    return;
+  }
+  // Claudius Regaud
+  if(!G.threats.length){log('Claudius Regaud: no hay Amenazas en juego.','lg-info');return}
+  if(typeof usaHabilidad==='function')usaHabilidad(a,'ASIGNAR');
+  selectThreat('Claudius Regaud: elige la Amenaza que recibe 2 de daño',function(t){
+    a.agotada=true;damageThreat(t,2,'Claudius Regaud');
+    if(G.threats.indexOf(t)<0&&!G.over){
+      log('Claudius Regaud: la Amenaza fue derrotada.','lg-good');
+      curElegirCientifico('Claudius Regaud','La Amenaza fue derrotada: ¿qué científico recupera 2 de vida?',function(i){curCurar(i,2,'Claudius Regaud');render()});
+    }
+    render();
+  },true);
+};
+
+// ---------- Investigación colaborativa: «Elige un científico» ----------
+function curColabJugada(nom){
+  // 1) Si la carta jugada es Investigación colaborativa, se elige su científico
+  if(nom==='Investigación colaborativa'){
+    const dueno=MP.idx;
+    setTimeout(function(){
+      const m=G.mejoras.filter(function(x){return x.id==='c_mj_colab'}).pop();if(!m)return;
+      m.objetivo=dueno;
+      if(mpN()>1)curElegirCientifico('Investigación colaborativa','Elige el científico: la primera vez por ronda que juegue una carta, robará 1.',function(i){
+        m.objetivo=i;log('Investigación colaborativa vigila a J'+(i+1)+' · '+mpNombre(MP.jugadores[i].carpeta)+'.','lg-good');render()});
+    },0);
+    return;
+  }
+  // 2) Si quien juega es el científico elegido de alguna Investigación colaborativa, roba 1 (una vez por ronda)
+  const lista=[];
+  MP.jugadores.forEach(function(j,i){
+    const ms=(i===MP.idx?G.mejoras:(j.st&&j.st.mejoras))||[];
+    ms.forEach(function(m){if(m.id==='c_mj_colab')lista.push({m:m,dueno:i})});
+  });
+  if(!lista.length&&mpN()<2){(G.mejoras||[]).forEach(function(m){if(m.id==='c_mj_colab')lista.push({m:m,dueno:0})})}
+  lista.forEach(function(x){
+    const obj=(x.m.objetivo===undefined)?x.dueno:x.m.objetivo;
+    if(obj!==MP.idx||x.m.ronda===G.round)return;
+    x.m.ronda=G.round;
+    setTimeout(function(){if(!G.over){draw(1,'Investigación colaborativa');render()}},0);
+  });
+}
+
+// ---------- Textos de las cartas iguales a los impresos ----------
+(function(){
+  const T={
+    c_ev_nobel2:'Al inicio de tu turno: cada científico recupera 1 carta de su pila de descarte y la añade a su mano.',
+    c_ev_rayosx:'Al inicio de tu turno: un científico recupera 4 puntos de vida. Si el objetivo es otro jugador, robas una carta.',
+    c_ev_radio:'Durante tu ataque: inflige 3 de daño directo a una Amenaza (ignora la resistencia biológica). Si la Amenaza es derrotada, reduce la Crisis Global en 1.',
+    c_ev_polonio:'Al inicio de tu turno: elimina 1 Amenaza secundaria del juego. Si esa Amenaza tenía 3 o más de vida, roba una carta.',
+    c_lg_legado:'Requiere el tablero lleno (6 permanentes). Uso único. Reduce la Crisis Global en 2. Todos los científicos recuperan 2 de vida y roban 1 carta.',
+    c_mj_colab:'Elige un científico. La primera vez por ronda que ese científico juegue una carta, roba una.',
+    c_ap_cuaderno:'Al inicio de tu turno: mira las 2 primeras cartas de tu Mazo. Deja una arriba y la otra va al fondo.',
+    c_ap_solvay:'Una vez por ronda, cuando un científico juegue 1 carta, roba 1 carta.',
+    c_ap_curie:'La primera vez en cada ronda que un científico recupere Vida, reduce la Crisis Global en 1.',
+    c_al_irene:'Asignar: reduce la Crisis Global en 1. Si Marie Curie tiene 5 o más de Intelecto, un científico recupera 2 de vida.',
+    c_al_regaud:'Asignar: una Amenaza recibe 2 de daño; si es derrotada, un científico recupera 2 de vida.'
+  };
+  DECK_CUR.forEach(function(c){if(T[c.id])c.tx=T[c.id]});
+  CARPETAS.curie.sci.tx='Radiación controlada — Una vez por turno, cuando Marie Curie reciba daño o una carta de Amenaza aumente la Crisis Global, puedes: reducir el daño recibido en 1, reducir el aumento de la Crisis en 1 o robar 1 carta.';
+})();
 
 mpArranque();
 </script>
