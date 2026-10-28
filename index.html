@@ -1289,6 +1289,71 @@ body.arr-carta .dl-dock{opacity:.85}
 .card.atk-listo::before{content:'⚔';position:absolute;right:4px;bottom:22px;z-index:6;font-size:13px;line-height:1;padding:3px 4px;border-radius:4px;
   background:rgba(8,18,42,.85);color:var(--dl-gold);box-shadow:0 0 0 1px rgba(255,205,74,.55);pointer-events:none}
 
+/* =================== LOGO: «of» sin rozar «Champions» =================== */
+.mp-logo .l2{margin:.7em 0 .12em}
+
+/* =================== MODO ATRACCIÓN =================== */
+body.atrae .dl-config,body.atrae .dl-aside,body.atrae .v2-hdr-acc,body.atrae .v2-coach,body.atrae .v2-toast,body.atrae #modal,
+body.atrae .dl-actions,body.atrae .v2-guia .g-sig{display:none!important}
+body.atrae{overflow:hidden}
+body.atrae .dl-app{grid-template-columns:minmax(0,1fr);max-width:1240px}
+body.atrae .dl-dock{grid-template-columns:auto minmax(0,1fr)}
+body.atrae .phase-cine .pc-band{animation-duration:.64s}
+.atr-capa{position:fixed;inset:0;z-index:450;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;align-items:center;
+  padding:18px 16px 26px;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55) 100%)}
+.atr-capa[hidden]{display:none}
+.atr-capa::after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px)}
+.atr-demo{font-family:var(--dl-display);font-style:italic;font-weight:800;font-size:20px;letter-spacing:8px;text-transform:uppercase;color:#fff;
+  padding:4px 18px;background:rgba(255,79,99,.85);clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);text-shadow:0 2px 0 rgba(0,0,0,.4)}
+.atr-pulsa{font-family:var(--dl-display);font-weight:800;font-size:clamp(22px,3.4vw,34px);letter-spacing:6px;text-transform:uppercase;color:var(--dl-gold);
+  padding:8px 26px;background:rgba(4,9,21,.78);text-shadow:0 0 18px rgba(255,205,74,.8);animation:mpParpadeo 1.1s steps(2) infinite}
+.atr-negro{position:fixed;inset:0;z-index:500;background:#000;opacity:0;pointer-events:none;transition:opacity .35s ease}
+.atr-negro.on{opacity:1}
+@media(prefers-reduced-motion:reduce){.atr-pulsa{animation:none}}
+body.atrae .dl-hud .sub,body.atrae #v2-handtip{visibility:hidden}
+
+/* ---- Tráiler: franjas de cine, rótulos, logo final y cámara ---- */
+body.atrae .v2-capa{display:none!important}
+body.atrae .dl-app{will-change:transform}
+.atr-capa{justify-content:flex-end}
+.atr-barra{position:absolute;left:0;right:0;height:9vh;background:#000;z-index:1;pointer-events:none}
+.atr-barra.arriba{top:0}.atr-barra.abajo{bottom:0}
+.atr-demo{position:absolute;top:calc(9vh + 14px);left:18px;z-index:2;font-size:14px;letter-spacing:5px;padding:3px 12px}
+.atr-pulsa{position:relative;z-index:2;margin-bottom:calc(9vh - 50px)}
+.atr-rotulo{position:absolute;left:0;bottom:calc(9vh + 28px);z-index:2;display:flex;flex-direction:column;padding:10px 40px 12px 26px;
+  background:linear-gradient(90deg,rgba(4,9,21,.92),rgba(4,9,21,.75) 70%,transparent);box-shadow:inset 4px 0 0 var(--pc);opacity:0;transform:translateX(-60px)}
+.atr-rotulo.ver{animation:atrRot 2.6s cubic-bezier(.2,.9,.25,1) forwards}
+.atr-rotulo b{font-family:var(--dl-display);font-style:italic;font-weight:800;font-size:clamp(24px,3.6vw,40px);letter-spacing:2px;text-transform:uppercase;color:#fff;line-height:1}
+.atr-rotulo span{font-family:var(--dl-display);font-weight:700;font-size:clamp(14px,1.8vw,20px);letter-spacing:3px;text-transform:uppercase;color:var(--pc);margin-top:4px}
+@keyframes atrRot{0%{opacity:0;transform:translateX(-60px)}14%{opacity:1;transform:translateX(0)}82%{opacity:1;transform:translateX(0)}100%{opacity:0;transform:translateX(30px)}}
+.atr-logo{position:absolute;left:50%;top:46%;z-index:3;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;pointer-events:none;
+  font-family:var(--dl-display);font-style:italic;font-weight:800;line-height:.86;opacity:0;white-space:nowrap}
+.atr-logo.ver{animation:atrLogo 2.6s ease forwards}
+.atr-logo::before{content:'';position:absolute;inset:-40vh -60vw;background:radial-gradient(ellipse at center,rgba(4,9,21,.92) 30%,rgba(4,9,21,.6) 60%,transparent 80%);z-index:-1}
+.atr-logo .l1,.atr-logo .l3{font-size:clamp(54px,10vw,120px);letter-spacing:clamp(2px,1vw,10px);color:#fff;text-shadow:0 0 30px rgba(63,214,255,.75),0 4px 0 #0c2a5a}
+.atr-logo .l2{font-size:clamp(20px,3.2vw,34px);letter-spacing:12px;color:var(--dl-gold);margin:.7em 0 .12em;text-shadow:0 0 16px rgba(255,205,74,.7)}
+.atr-logo small{font-style:normal;font-size:clamp(13px,1.6vw,18px);letter-spacing:5px;text-transform:uppercase;color:var(--dl-steel);margin-top:18px}
+.atr-logo.ver .l1{animation:mpSlam .55s .05s cubic-bezier(.2,1.4,.4,1) both}
+.atr-logo.ver .l2{animation:mpSlam .45s .35s cubic-bezier(.2,1.4,.4,1) both}
+.atr-logo.ver .l3{animation:mpSlam .55s .5s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes atrLogo{0%{opacity:0}10%{opacity:1}100%{opacity:1}}
+
+/* =================== SIN SELECCIÓN DE TEXTO NI MENÚS DEL NAVEGADOR =================== */
+html,body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
+input,textarea,select,[contenteditable="true"]{-webkit-user-select:text;user-select:text}
+img{-webkit-user-drag:none;user-drag:none}
+
+/* =================== SELECTOR DE IDIOMA =================== */
+.mp-lang{display:inline-flex;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);box-shadow:inset 0 0 0 1px var(--dl-cyan-dim);background:rgba(8,18,42,.9)}
+.mp-lang button{font-family:var(--dl-display);font-size:13px;font-weight:800;letter-spacing:1.5px;color:var(--dl-steel);background:none;border:0;padding:5px 11px;cursor:pointer}
+.mp-lang button:first-child{padding-left:15px}.mp-lang button:last-child{padding-right:15px}
+.mp-lang button.on{color:#06101f;background:var(--dl-cyan)}
+.mp-lang button:focus-visible{outline:2px solid var(--dl-gold);outline-offset:-2px}
+.mp-idioma-tit .mp-link{color:var(--dl-cyan)}
+.mp-idiomas{grid-template-columns:repeat(2,minmax(0,1fr));max-width:720px}
+@media(max-width:760px){.mp-idiomas{grid-template-columns:1fr}}
+body.lang-en .threat.neutralizada::after{content:"NEUTRALIZED"}
+
 </style>
 </head>
 <body>
@@ -1301,6 +1366,7 @@ body.arr-carta .dl-dock{opacity:.85}
   </div>
   <div class="sub" id="sub-carpeta">Richard Feynman "Ofey" (Midrange) vs. «Pandemia mundial» · Solitario</div>
   <div class="v2-hdr-acc">
+    <div class="mp-lang" data-noi18n role="group" aria-label="Idioma · Language"><button type="button" data-idioma="es" onclick="fijarIdioma('es')" title="Español">ES</button><button type="button" data-idioma="en" onclick="fijarIdioma('en')" title="English">EN</button></div>
     <button type="button" class="mp-hdr-btn" onclick="mpAbrirIntro('jugadores')" title="Elegir número de jugadores y mazos"><span id="mp-hdr">1 jugador</span></button>
     <button type="button" class="v2-demo-chip" id="v2-demo-chip" hidden onclick="salirDemo()" title="Volver a una partida normal">Demostración · salir</button>
     <button type="button" class="v2-help" id="btn-guia" onclick="abrirGuia('ayuda')" aria-label="Abrir la guía rápida"><span class="q">?</span><span class="t">Guía</span></button>
@@ -1411,6 +1477,8 @@ body.arr-carta .dl-dock{opacity:.85}
       <div class="cfg"><button type="button" class="btn sm oro" onclick="entrarDemo()">Partida de demostración</button>
         <button type="button" class="btn sm" onclick="abrirResumen(false)">Ver resumen</button></div>
       <div class="hint">La demostración usa el mazo de Feynman, meta de Investigación 15 y un orden de cartas fijo: cada presentación se juega igual.</div>
+      <div class="cfg"><label for="cfg-idioma">Idioma · Language</label>
+        <select id="cfg-idioma" data-noi18n onchange="fijarIdioma(this.value)"><option value="es">Español</option><option value="en">English</option></select></div>
       <div class="cfg"><label for="cfg-anim">Ritmo de las animaciones</label>
         <select id="cfg-anim">
           <option value="1" selected>Completo</option>
@@ -1587,6 +1655,8 @@ body.arr-carta .dl-dock{opacity:.85}
   <div class="mpc-band"><div class="mpc-foto" id="mpc-foto"></div><div class="mpc-txt"><span class="mpc-j" id="mpc-j"></span><span class="mpc-n" id="mpc-n"></span><span class="mpc-s" id="mpc-s"></span></div></div></div>
 <div class="mp-intro" id="mp-intro" hidden role="dialog" aria-modal="true" aria-label="Inicio de partida"><div class="mp-fondo"></div><div class="mp-escena" id="mp-escena"></div></div>
 
+<div class="atr-capa" id="atr-capa" hidden onclick="atrSalir()" role="button" aria-label="Tráiler: haz clic para jugar"><div class="atr-barra arriba"></div><div class="atr-barra abajo"></div><div class="atr-demo">Demostración</div><div class="atr-rotulo" id="atr-rotulo"></div><div class="atr-logo" id="atr-logo"><span class="l1">Champions</span><span class="l2">of</span><span class="l3">Science</span><small>Biografías científicas jugables</small></div><div class="atr-pulsa">Haz clic para jugar</div></div>
+<div class="atr-negro" id="atr-negro"></div>
 <div class="phase-cine" id="cine"><div class="pc-band"><div class="pc-t" id="cine-t"></div><div class="pc-s" id="cine-s"></div></div></div>
 
 <div class="modal" id="modal"><div class="modal-box">
@@ -2232,7 +2302,7 @@ function announcePhase(key,label,sub,cb){
   el.className='phase-cine show f-'+key;
   const band=el.querySelector('.pc-band');
   if(band){band.style.animation='none';void band.offsetWidth;band.style.animation=''}
-  setTimeout(function(){el.className='phase-cine';if(cb)cb()},CINE_MS);
+  setTimeout(function(){el.className='phase-cine';if(cb)cb()},CINE_MS*(window.ATR_VEL||1));
 }
 
 // ============ BÚSQUEDA REACTIVA DE FEYNMAN (Ingenio extravagante) ============
@@ -2499,7 +2569,7 @@ function resolveEvent(c){
     if(c.t!=='legendario')afterEvent(); else render();
   };
   switch(c.id){
-    case 'ev1': healSci(2,'Bongós'); done(); break;
+    case 'ev1': curElegirCientifico('Bongós','¿Qué científico recupera hasta 2 de vida?',function(i){curCurar(i,2,'Bongós');done()}); break;
     case 'ev2':
       if(!G.grave.length){log('Cementerio vacío.','lg-info');done();break}
       pickCards(G.grave,0,2,'Baraja hasta 2 cartas del Cementerio al Mazo',(sel)=>{
@@ -2551,7 +2621,7 @@ function resolveEvent(c){
       done();break}
     case 'ev10':{
       if(!G.grave.length){log('Cementerio vacío.','lg-info');
-        if(G.crisis>6)healSci(1,'Electrodinámica cuántica (bono)');
+        if(G.crisis>6){curElegirCientifico('Electrodinámica cuántica','La Crisis es mayor a 6: ¿qué científico gana 1 de vida?',function(i){curCurar(i,1,'Electrodinámica cuántica (bono)');done()});break}
         done();break}
       const tipos=[];G.grave.forEach(x=>{if(tipos.indexOf(x.t)<0)tipos.push(x.t)});
       pickCards(G.grave,0,tipos.length,'Electrodinámica cuántica — elige hasta 1 carta DE CADA TIPO ('+tipos.length+' tipos disponibles: '+tipos.join(', ')+')',function(sel){
@@ -2561,7 +2631,7 @@ function resolveEvent(c){
         validas.forEach((x,i)=>{G.grave.splice(G.grave.indexOf(x),1);G.deck.push(x);fly(x,'grave','deck',i*190,500)});
         if(validas.length){shuffle(G.deck);log('Barajas '+validas.length+' carta(s) al Mazo: '+validas.map(x=>x.n).join(', '),'lg-good')}
         else log('No barajas ninguna carta.','lg-info');
-        if(G.crisis>6)healSci(1,'Electrodinámica cuántica (bono)');
+        if(G.crisis>6)return curElegirCientifico('Electrodinámica cuántica','La Crisis es mayor a 6: ¿qué científico gana 1 de vida?',function(i){curCurar(i,1,'Electrodinámica cuántica (bono)');done()});
         done();
       });
       break}
@@ -2574,12 +2644,12 @@ function resolveEvent(c){
         done();
       },false,function(t){return !t.principal});break}
     case 'ev12':
-      if(!G.grave.length){log('Cementerio vacío.','lg-info');if(G.crisis>6){G.comPermBonus+=1;log('+1 Comunicación permanente (ahora '+eCom()+').','lg-good')}done();break}
+      if(!G.grave.length){log('Cementerio vacío.','lg-info');if(G.crisis>6){curComPerm(done);break}done();break}
       pickCards(G.grave,1,1,'Añade 1 carta del Cementerio a tu Mano',(sel)=>{
         const x=sel[0];G.grave.splice(G.grave.indexOf(x),1);G.hand.push(x);
         x._justDrawn=true;fly(x,'grave','hand',0,500);
         log('Premio Nobel: añades '+x.n+' a tu mano.','lg-good');
-        if(G.crisis>6){G.comPermBonus+=1;log('+1 Comunicación permanente (ahora '+eCom()+').','lg-good')}
+        if(G.crisis>6)return curComPerm(done);
         done();
       });break;
     case 'lg1':{
@@ -2888,7 +2958,7 @@ function useApoyo(a){
   if(a.id==='ap1'){
     if(G.mitUsed){log('MIT ya usado este turno.','lg-info');return}
     askChoice('MIT','Elige:',['+1 Investigación','+1 de vida'],(i)=>{
-      G.mitUsed=true;if(i===0)invUp(1,'MIT');else healSci(1,'MIT');render();
+      G.mitUsed=true;if(i===0){invUp(1,'MIT');render()}else curElegirCientifico('MIT','¿Qué científico recupera 1 de vida?',function(k){curCurar(k,1,'MIT');render()});
     });
   } else if(a.id==='ap2'){
     if(G.slacUsed){log('SLAC ya usado esta ronda.','lg-info');return}
@@ -4054,8 +4124,8 @@ const _origHeal=healSci;
 healSci=function(n,src){
   const antes=G.life;
   _origHeal(n,src);
-  if(G.life>antes&&!G.labUsed&&apoyoEq('s_ap_lab')){
-    G.labUsed=true;crisisDown(1,'Laboratorio de física teórica');
+  if(G.life>antes&&curUsoCarta('s_ap_lab','turno')){
+    crisisDown(1,'Laboratorio de física teórica');
   }
 };
 function actualizarSubtitulo(){
@@ -5028,7 +5098,7 @@ costOf=function(c){
 const _curHeal=healSci;
 healSci=function(n,src){
   const antes=G.life;_curHeal(n,src);
-  if(G.life>antes&&apoyoEq('c_ap_curie')&&!G.curHeal){G.curHeal=true;crisisDown(1,'Instituto Curie')}
+  if(G.life>antes&&curUsoCarta('c_ap_curie','ronda')){crisisDown(1,'Instituto Curie')}
 };
 const _curCP=crisisPhase;
 crisisPhase=function(){
@@ -5050,7 +5120,7 @@ log=function(t,cls){
   const c=mazoActual().find(function(x){return x.n===nom});
   if(c&&c.t==='evento')G.curLabEv=true;
   curColabJugada(nom);
-  if(apoyoEq('c_ap_solvay')&&!G.curSolvay){G.curSolvay=true;setTimeout(function(){draw(1,'Conferencias de Solvay');render()},0)}
+  curSolvayJugada();
 };
 
 // ---------------- Método científico: cancela Encuentros perjudiciales ----------------
@@ -5993,16 +6063,23 @@ checkFeynSearch=function(cb){
   TX=null;
   G.feynSearchPending=false;
   const pool=G.deck.filter(function(c){return c.id.indexOf('mj')===0});
+  const dueno=MP.idx;
   if(!pool.length){log('Ingenio extravagante: no quedan "Técnica de Feynman:" ni "RF:" en el Mazo.','lg-info');return done()}
   const preguntar=function(){
     askYesNo('✦ Ingenio extravagante',
       'Se cumplió la condición ('+(G.feynTrigger||'condición cumplida')+'). ¿Buscar una carta "Técnica de Feynman:" o "RF:" en tu Mazo y añadirla a tu Mano?',
       function(){
         pickCardsVolver(pool,1,1,'Ingenio extravagante: elige la carta a añadir a tu Mano',function(sel){
-          const x=sel[0];G.deck.splice(G.deck.indexOf(x),1);G.hand.push(x);shuffle(G.deck);
-          G.feynSearchUsed=true;x._justDrawn=true;
-          flashUid('sci');fly(x,'deck','hand',180,470);
-          log('✦ Ingenio extravagante: buscas '+x.n+'.','lg-good');
+          const x=sel[0];
+          // La carta va SIEMPRE a la mano de Feynman (su dueño), aunque en este momento se vea otro campo
+          curEn(dueno,function(activo){
+            const i=G.deck.indexOf(x);
+            if(i<0){log('Ingenio extravagante: la carta ya no está en el Mazo de Feynman.','lg-info');return}
+            G.deck.splice(i,1);G.hand.push(x);shuffle(G.deck);
+            G.feynSearchUsed=true;x._justDrawn=true;
+            if(activo){flashUid('sci');fly(x,'deck','hand',180,470)}
+            log('✦ Ingenio extravagante: '+sciActual().n+' busca '+x.n+'.','lg-good');
+          });
           render();done();
         },preguntar);
       },
@@ -6777,6 +6854,626 @@ function curColabJugada(nom){
   DECK_CUR.forEach(function(c){if(T[c.id])c.tx=T[c.id]});
   CARPETAS.curie.sci.tx='Radiación controlada — Una vez por turno, cuando Marie Curie reciba daño o una carta de Amenaza aumente la Crisis Global, puedes: reducir el daño recibido en 1, reducir el aumento de la Crisis en 1 o robar 1 carta.';
 })();
+
+
+// =====================================================================
+// ====== «UN CIENTÍFICO» / «CUANDO UN CIENTÍFICO»: TODO EL EQUIPO ======
+// =====================================================================
+// Uso de una carta por turno o por ronda, guardado en la propia carta (no en quien la activa)
+function curUsoCarta(id,periodo){
+  const a=apoyoEqCarta(id);if(!a)return false;
+  const k=periodo==='turno'?'t'+MP.turnoN:'r'+G.round;
+  if(a._uso===k)return false;
+  a._uso=k;return true;
+}
+function mpDuenoCarta(c){
+  let d=-1;
+  MP.jugadores.forEach(function(j,i){
+    const f=i===MP.idx?G:j.st;if(!f)return;
+    ['apoyos','mejoras','aliados'].forEach(function(z){if((f[z]||[]).indexOf(c)>=0)d=i});
+  });
+  return d<0?MP.idx:d;
+}
+// Premio Nobel (1965): «1 Científico gana 1 de Comunicación permanentemente»
+function curComPerm(done){
+  curElegirCientifico('Premio Nobel (1965)','La Crisis es mayor a 6: ¿qué científico gana 1 de Comunicación permanente?',function(i){
+    curEn(i,function(){G.comPermBonus=(G.comPermBonus||0)+1;log('+1 Comunicación permanente para '+sciActual().n+' (ahora '+eCom()+').','lg-good')});
+    render();if(done)done();
+  });
+}
+// Conferencias de Solvay: cuando CUALQUIER científico juega una carta, su dueño puede robar (una vez por ronda)
+function curSolvayJugada(){
+  const a=apoyoEqCarta('c_ap_solvay');if(!a||G.over)return;
+  const k='r'+G.round;if(a._uso===k)return;
+  a._uso=k;
+  const dueno=mpDuenoCarta(a), quien=sciActual().n;
+  mpEncolar(dueno,'Conferencias de Solvay',function(done){
+    askYesNo('Conferencias de Solvay',quien+' jugó una carta. ¿'+sciActual().n+' roba 1 carta? (una vez por ronda)',
+      function(){draw(1,'Conferencias de Solvay');render();mpEsperarCalma(done)},
+      function(){a._uso=null;log('Conferencias de Solvay: no se usa esta vez.','lg-info');render();done()});
+  });
+}
+
+// =====================================================================
+// ======== EL TABLERO REVELA PRIMERO LA AMENAZA, DESPUÉS EL ENCUENTRO ===
+// =====================================================================
+// Cada carta sale de su mazo, se muestra grande en el centro con su nombre y
+// luego baja a su zona; recién ahí se aplica su efecto.
+function revelarCine(tipo,carta,cb){
+  if(typeof document==='undefined'||!fxOn()){cb();return}
+  const v=fxV(),W=window.innerWidth,H=window.innerHeight;
+  const amen=tipo==='threat';
+  const color=amen?'var(--fx-amenaza)':'#5cc8ff';
+  const r0=fxRect($id(amen?'pile-threatdeck':'pile-encdeck'))||{left:W/2-60,top:80,width:118,height:164};
+  const capa=fxCapa();
+  const dim=fxEl('fx-dim',null,capa);
+  dim.animate([{opacity:0},{opacity:1}],{duration:240*v,fill:'forwards'});
+  const w=r0.width,h=r0.height;
+  const g=fxEl('fx-card rev-carta',{'--fx-c':color,width:w+'px',height:h+'px'},capa);
+  const cara=caraDe(carta);
+  g.style.backgroundImage='url("'+(cara||'')+'")';
+  const esc=Math.min(2.6,(H*0.52)/h);
+  const cx=W/2-w/2,cy=H*0.43-h/2;
+  const T=function(x,y,s,ry){return 'translate('+x+'px,'+y+'px) scale('+s+') rotateY('+(ry||0)+'deg)'};
+  const ida=480*v,pausa=1250*v,vuelta=380*v;
+  g.animate([{transform:T(r0.left,r0.top,1,90),opacity:.4},{transform:T(cx,cy-30,esc*1.05,8),opacity:1,offset:.7},{transform:T(cx,cy,esc,0),opacity:1}],
+    {duration:ida,easing:'cubic-bezier(.2,.8,.2,1)',fill:'forwards'});
+  let hecho=false;
+  const fin=function(){if(hecho)return;hecho=true;g.remove();dim.remove();cb()};
+  setTimeout(function(){
+    const pc={x:W/2,y:H*0.43};
+    fxImpacto(pc.x,pc.y,color,amen?1.3:.9);
+    if(amen)fxSacudir();
+    fxBanda(amen?(carta.principal?'Amenaza principal':'Nueva Amenaza'):'Encuentro',carta.n,color,Math.min(H-50,pc.y+h*esc/2+46),1250+380);
+  },ida);
+  setTimeout(function(){
+    dim.animate([{opacity:1},{opacity:0}],{duration:vuelta,fill:'forwards'});
+    const z=fxRect($id(amen?'z-threats':'z-enc'))||{left:W/2,top:120,width:w,height:h};
+    g.animate([{transform:T(cx,cy,esc,0),opacity:1},{transform:T(z.left+(z.width-w)/2,z.top+(z.height-h)/2,1,0),opacity:.85}],
+      {duration:vuelta,easing:'cubic-bezier(.55,0,.8,.4)',fill:'forwards'});
+    setTimeout(fin,vuelta);
+  },ida+pausa);
+  setTimeout(fin,ida+pausa+vuelta+1500);       // red de seguridad
+}
+continueCrisis=function(){
+  if(G.over)return;
+  const gen=V2.gen;
+  const vigente=function(){return gen===V2.gen&&!G.over};
+  crisisUp(mpCrisisTurno(),'Fase de Crisis ('+mpEtiqCrisis()+')');
+  if(G.over)return;
+  escFaseCrisis();if(G.over)return;
+  const terminar=function(){
+    if(!vigente())return;
+    render();
+    setTimeout(function(){if(vigente())checkFeynSearch(function(){startTurn()})},500);
+  };
+  const encuentro=function(){
+    if(!vigente())return;
+    reponerEncuentros();
+    if(!G.encDeck.length)return terminar();
+    const e=G.encDeck.pop();render();
+    revelarCine('enc',e,function(){
+      if(!vigente())return;
+      e.justRevealed=true;G.encDiscard.push(e);G.encActual=e;
+      log('◆ ENCUENTRO: '+e.n+' — '+e.tx,'lg-info');
+      render();
+      e.fx();
+      if(G.over)return;
+      mpEsperarCalma(terminar);
+    });
+  };
+  reponerAmenazas();
+  if(G.threats.length<2&&G.threatDeck.length){
+    const t=G.threatDeck.pop();render();
+    revelarCine('threat',t,function(){
+      if(!vigente())return;
+      t.justRevealed=true;G.threats.push(t);
+      log('⚠ Se revela AMENAZA: '+t.n+' (Vida '+t.hp+')','lg-crisis');
+      if(t.principal)bigCine('v-threat','☢','Amenaza Principal',t.n+' · Resistencia biológica hasta completar la Vacuna',2400,true);
+      if(t.onEnter){
+        if(G.shieldNextThreat&&!t.principal){G.shieldNextThreat=false;log('Ventana de Oportunidad anula el aumento de Crisis.','lg-good')}
+        else t.onEnter();
+      }
+      if(G.over)return;
+      render();
+      // Pausa breve y, si el efecto abrió una decisión, se espera a que se resuelva antes del Encuentro
+      const pausa=ritmo()?Math.round((t.principal?2300:500)*Math.max(.5,ritmo())):0;
+      setTimeout(function(){mpEsperarCalma(encuentro)},pausa);
+    });
+    return;
+  }
+  if(G.threats.length>=2)log('Límite de 2 Amenazas en juego: no se revela ninguna.','lg-info');
+  else log('No quedan Amenazas por revelar.','lg-info');
+  encuentro();
+};
+
+
+// =====================================================================
+// ============ MODO ATRACCIÓN: TEASER CINEMATOGRÁFICO EN BUCLE ==========
+// =====================================================================
+// Como en las máquinas arcade: antes del título se reproduce un tráiler de ~19 s
+// montado con el motor real del juego (cartas, cinemáticas, daño, monedas),
+// con cámara que se mueve entre planos, franjas de cine y rótulos.
+// Un clic o una tecla pasa, tras un fundido a negro, a la pantalla de título.
+const ATR={on:false,token:0,animPrev:null,ciclo:0,orig:{}};
+window.ATR_VEL=1;
+function atrNegro(on,ms){
+  const n=$id('atr-negro');if(!n)return;
+  n.style.transitionDuration=(ms||350)+'ms';
+  n.classList.toggle('on',!!on);
+}
+function atrVelocidad(on){
+  const sel=$id('cfg-anim');if(!sel)return;
+  if(on){
+    if(!sel.querySelector('option[value="0.8"]')){const o=document.createElement('option');o.value='0.8';o.textContent='Tráiler';o.hidden=true;sel.appendChild(o)}
+    if(ATR.animPrev===null)ATR.animPrev=sel.value;
+    sel.value='0.8';window.ATR_VEL=0.67;
+  } else {
+    if(ATR.animPrev!==null)sel.value=ATR.animPrev;
+    ATR.animPrev=null;window.ATR_VEL=1;
+  }
+}
+function atrLimpiar(){
+  $id('modal').classList.remove('show');threatSelectCb=null;
+  if(typeof ocultarFlecha==='function')ocultarFlecha();
+  MP.cola=[];MP.procesando=false;
+  const l=$id('fx-layer');if(l)l.innerHTML='';
+  document.querySelectorAll('.v2-coach,.fx-pop,.ghost').forEach(function(e){e.remove()});
+  const bc=$id('bigcine');if(bc)bc.className='big-cine';
+  const tc=$id('mp-turno-cine');if(tc)tc.classList.remove('show');
+  atrCamara(null,1,0);atrRotulo('');
+  const lg=$id('atr-logo');if(lg)lg.classList.remove('ver');
+}
+// ---------- Cámara: encuadra una zona del campo ----------
+function atrMedir(){
+  const app=document.querySelector('.dl-app');if(!app)return;
+  app.style.transition='none';app.style.transform='none';
+  const ra=app.getBoundingClientRect();
+  const sel={enemigo:'.dl-enemy',amenazas:'#z-threats',rail:'.dl-rail',jugador:'.dl-player',mano:'.dl-dock',cientifico:'#z-sci',general:'.dl-field'};
+  ATR.orig={};
+  for(const k in sel){const el=document.querySelector(sel[k]);if(!el)continue;const r=el.getBoundingClientRect();
+    ATR.orig[k]={x:r.left+r.width/2-ra.left,y:r.top+r.height/2-ra.top}}
+}
+function atrCamara(zona,zoom,ms,giro,dx,dy){
+  ATR.cam=[zona,zoom,ms,giro,dx,dy];
+  const app=document.querySelector('.dl-app');if(!app)return;
+  const o=zona&&ATR.orig[zona];
+  app.style.transition=ms?('transform '+ms+'ms cubic-bezier(.45,.05,.25,1), transform-origin '+ms+'ms cubic-bezier(.45,.05,.25,1)'):'none';
+  if(!o||zoom===1&&!giro){app.style.transform='none';return}
+  app.style.transformOrigin=o.x+'px '+o.y+'px';
+  app.style.transform='translate('+(dx||0)+'px,'+(dy||0)+'px) scale('+zoom+') rotate('+(giro||0)+'deg)';
+}
+function atrRotulo(t,sub,color){
+  const r=$id('atr-rotulo');if(!r)return;
+  if(!t){r.classList.remove('ver');return}
+  r.style.setProperty('--pc',color||'var(--dl-gold)');
+  r.innerHTML='<b></b><span></span>';r.firstChild.textContent=t;r.lastChild.textContent=sub||'';
+  r.classList.remove('ver');void r.offsetWidth;r.classList.add('ver');
+}
+// ---------- Utilidades del guion ----------
+function atrEspera(ms){const tk=ATR.token;return new Promise(function(res,rej){setTimeout(function(){tk===ATR.token&&ATR.on?res():rej('fin')},ms)})}
+function atrPromesa(fn){const tk=ATR.token;return new Promise(function(res,rej){fn(function(){tk===ATR.token&&ATR.on?res():rej('fin')})})}
+function atrAmenaza(id,uid){return Object.assign({},THREAT_DEF.find(function(t){return t.id===id}),{dmg:0,_uid:uid,_ft:'threat',_lastDmg:0})}
+function atrCarta(mazo,id,uid){return Object.assign({},mazo.find(function(c){return c.id===id}),{_uid:uid})}
+function atrJugar(c){                         // cinemática real de jugar una carta desde la mano
+  return atrPromesa(function(fin){
+    const el=document.querySelector('#z-hand [data-uid="'+c._uid+'"]');
+    const r0=fxRect(el)||{left:innerWidth/2-50,top:innerHeight-180,width:100,height:139};
+    if(el)el.style.visibility='hidden';
+    const tk=ATR.token;fxJugada(c,r0,function(){if(tk!==ATR.token||!ATR.on)return;const i=G.hand.indexOf(c);if(i>=0)G.hand.splice(i,1);render();fin()});
+  });
+}
+function atrFlecha(desdeSel,t){              // flecha de ataque «arrastrada» hasta la Amenaza
+  return atrPromesa(function(fin){
+    const a=fxRect(document.querySelector(desdeSel)),b=fxRect(document.querySelector('[data-tid="'+t._uid+'"]'));
+    if(!a||!b)return fin();
+    const p0={x:a.left+a.width/2,y:a.top+a.height/2},p1={x:b.left+b.width/2,y:b.top+b.height/2};
+    let k=0;const n=12;
+    const it=setInterval(function(){k++;const f=1-Math.pow(1-k/n,3);dibujarFlecha(p0.x,p0.y,p0.x+(p1.x-p0.x)*f,p0.y+(p1.y-p0.y)*f);
+      if(k>=n){clearInterval(it);setTimeout(function(){ocultarFlecha();fin()},160)}},28);
+  });
+}
+function atrRevelar(t){const tk=ATR.token;return atrPromesa(function(fin){revelarCine('threat',t,function(){if(tk!==ATR.token||!ATR.on)return;G.threats.push(t);t.justRevealed=true;render();fin()})})}
+function atrTurno(i){return atrPromesa(function(fin){mpActivar(i);actualizarSubtitulo();render();mpTurnoCine(i,fin)})}
+
+// ---------- Guion del tráiler (~19 s) ----------
+async function atrGuion(){
+  // Preparación: 3 científicos, tablero vacío, sin flujo automático
+  MP.lineup=['feynman','schrodinger','curie'];MP.enEspera=true;
+  restart();
+  G.phase='crisis';G.crisis=4;G.inv=14;G.threats.length=0;
+  const virus=atrAmenaza('p0','atr-v'),mut=atrAmenaza('p4','atr-m');
+  const trinity=atrCarta(DECK_DEF,'ev9','atr-c1');
+  MP.jugadores[0].carpeta='feynman';
+  G.hand=[atrCarta(DECK_DEF,'al3','atr-c0'),trinity,atrCarta(DECK_DEF,'mj1','atr-c2')];
+  G.aliados=[Object.assign(atrCarta(DECK_DEF,'al1','atr-a1'),{dmg:0,agotada:false})];
+  const radio=atrCarta(DECK_CUR,'c_ev_radio','atr-c4');
+  MP.jugadores[2].st.hand=[atrCarta(DECK_CUR,'c_mj_pionera','atr-c3'),radio,atrCarta(DECK_CUR,'c_al_irene','atr-c5')];
+  MP.jugadores[2].st.aliados=[Object.assign(atrCarta(DECK_CUR,'c_al_regaud','atr-a2'),{dmg:0,agotada:false})];
+  MP.jugadores[1].st.apoyos=[atrCarta(DECK_SCH,'s_ap_zurich','atr-p1')];
+  render();atrMedir();
+  atrNegro(false,500);
+
+  // 1 · LA AMENAZA
+  atrCamara('enemigo',1.32,0,0,0,40);
+  await atrEspera(80);
+  atrCamara('amenazas',1.45,2600,-1.2);
+  atrRotulo('Pandemia mundial','El escenario ataca','var(--dl-crim)');
+  await atrRevelar(virus);
+  bigCine('v-threat','☢','Amenaza principal','Virus Desconocido',1500,true);
+  G.crisis+=2;render();            // sin reacciones: es una escena montada
+  await atrEspera(500);
+  await atrRevelar(mut);
+  await atrEspera(250);
+
+  // 2 · FEYNMAN: Prueba Trinity + ataque
+  atrRotulo('');
+  atrCamara('mano',1.28,700,1);
+  await atrTurno(0);
+  G.phase='combate';render();
+  atrRotulo('J1 · Richard Feynman','Prueba Trinity','var(--dl-cyan)');
+  await atrJugar(trinity);
+  atrCamara('amenazas',1.38,500,0);
+  await atrEspera(220);
+  G.threats.slice().forEach(function(t){sparkAt(t,0);damageThreat(t,3,'Prueba Trinity',true)});
+  fxSacudir();render();
+  await atrEspera(500);
+  atrCamara('general',1.08,450,0);
+  await atrEspera(250);
+  await atrFlecha('#z-sci .card',mut);
+  lungeUid('sci');sparkAt(mut,80);
+  damageThreat(mut,3,'Ataque de '+sciActual().n);invUp(3,'Ataque de '+sciActual().n);render();
+  atrCamara('amenazas',1.5,380,1.5);
+  await atrEspera(750);
+
+  // 3 · SCHRÖDINGER: el azar como arma
+  atrCamara('rail',1.22,600,-2);
+  await atrTurno(1);
+  G.phase='acciones';render();
+  atrRotulo('J2 · Erwin Schrödinger','Destino probabilístico','#c08cff');
+  bigCine('v-leg','⭐','Evento legendario','Destino probabilístico',1300,false);
+  await atrEspera(450);
+  await atrPromesa(function(fin){animarMoneda({titulo:'Destino probabilístico',resultados:['cara','cara','cara'],etiqueta:'¡TRES CARAS!',clase:'cara',cb:fin})});
+  atrCamara('amenazas',1.42,350,0);
+  for(let k=0;k<3;k++){sparkAt(virus,0);damageThreat(virus,1,'Destino probabilístico');crisisDown(1,'Destino probabilístico');render();await atrEspera(260)}
+  await atrEspera(300);
+
+  // 4 · CURIE: la Vacuna y el golpe final
+  atrRotulo('');
+  atrCamara('jugador',1.25,600,1.5);
+  await atrTurno(2);
+  G.phase='combate';render();
+  atrRotulo('J3 · Marie Curie','Descubrimiento del Radio','var(--dl-gold)');
+  await atrJugar(radio);
+  invUp(G.invGoal-G.inv,'Descubrimiento del Radio');render();     // ★ Vacuna lista
+  atrCamara('general',1.05,600,0);
+  await atrEspera(1300);
+  atrCamara('general',1.12,500,-1);
+  await atrFlecha('#z-sci .card',virus);
+  lungeUid('sci');sparkAt(virus,60);
+  atrCamara('amenazas',1.6,300,0);
+  G.escSinResistencia=true;damageThreat(virus,virus.hp,'Ataque de '+sciActual().n);G.escSinResistencia=false;
+  fxDestello('var(--dl-gold)',600);fxSacudir();render();
+  await atrEspera(1300);
+
+  // 5 · CIERRE: logo
+  atrRotulo('');
+  atrCamara('general',1,700,0);
+  const lg=$id('atr-logo');if(lg){lg.classList.remove('ver');void lg.offsetWidth;lg.classList.add('ver')}
+  await atrEspera(2000);
+}
+async function atrCiclo(){
+  if(!ATR.on)return;
+  const tk=++ATR.token;
+  atrLimpiar();ATR.ciclo++;
+  try{await atrGuion()}catch(e){}
+  if(!ATR.on||tk!==ATR.token)return;
+  atrNegro(true,450);
+  setTimeout(function(){if(ATR.on&&tk===ATR.token)atrCiclo()},500);
+}
+function atrIniciar(){
+  ATR.on=true;ATR.ciclo=0;
+  document.body.classList.add('atrae');
+  const c=$id('atr-capa');if(c)c.hidden=false;
+  mpCerrarIntro();
+  atrVelocidad(true);
+  atrNegro(true,1);
+  setTimeout(atrCiclo,60);
+}
+function atrSalir(){
+  if(!ATR.on)return;
+  ATR.on=false;ATR.token++;
+  atrNegro(true,300);
+  setTimeout(function(){
+    atrLimpiar();
+    V2.demo=false;Math.random=_rndNativo;
+    atrVelocidad(false);
+    document.body.classList.remove('atrae');
+    const c=$id('atr-capa');if(c)c.hidden=true;
+    MP.lineup=['feynman'];MP.enEspera=true;
+    restart();
+    mpAbrirIntro('titulo');
+    setTimeout(function(){atrNegro(false,450)},60);
+  },340);
+}
+// Detener sin transición (para pruebas automáticas o depuración)
+function atrDetener(){
+  if(!ATR.on)return;
+  ATR.on=false;ATR.token++;atrLimpiar();V2.demo=false;Math.random=_rndNativo;atrVelocidad(false);
+  document.body.classList.remove('atrae');const c=$id('atr-capa');if(c)c.hidden=true;atrNegro(false,1);
+}
+// Teclas que no son «pulsar para jugar»: F1–F12 (p. ej. F11 pantalla completa), Fn, modificadores, Esc, etc.
+const ATR_TECLAS_IGNORADAS=/^(F\d{1,2}|Fn|FnLock|Shift|Control|Alt|AltGraph|Meta|OS|CapsLock|NumLock|ScrollLock|Escape|Tab|ContextMenu|PrintScreen|Pause|AudioVolume.*|MediaPlayPause|Unidentified|Dead|Process)$/;
+document.addEventListener('keydown',function(ev){
+  if(!ATR.on)return;
+  if(ATR_TECLAS_IGNORADAS.test(ev.key||'')||ev.ctrlKey||ev.metaKey||ev.altKey)return;
+  ev.preventDefault();atrSalir();
+},true);
+// Pantalla completa o cambio de tamaño: la cámara se vuelve a medir y el tráiler sigue
+let _atrResize=null;
+window.addEventListener('resize',function(){
+  if(!ATR.on)return;
+  clearTimeout(_atrResize);
+  _atrResize=setTimeout(function(){
+    if(!ATR.on)return;
+    const ult=ATR.cam;atrMedir();
+    if(ult)atrCamara(ult[0],ult[1],0,ult[3],ult[4],ult[5]);
+  },120);
+});
+mpArranque=function(){atrIniciar()};
+
+
+// =====================================================================
+// ===== DECISIONES DE UNA PARTIDA ANTERIOR NO AFECTAN A LA NUEVA =======
+// =====================================================================
+// Un cuadro de elección queda atado a la partida en que se abrió: si se reinicia
+// (o termina el tráiler), se cierra y sus botones ya no hacen nada.
+function genAtar(fn){const g=V2.gen;return function(){if(g!==V2.gen){$id('modal').classList.remove('show');return}if(fn)return fn.apply(this,arguments)}}
+askYesNo=(function(o){return function(t,d,y,n){return o(t,d,genAtar(y),genAtar(n))}})(askYesNo);
+askChoice=(function(o){return function(t,d,op,cb){return o(t,d,op,genAtar(cb))}})(askChoice);
+pickCards=(function(o){return function(pool,min,max,t,cb){return o(pool,min,max,t,genAtar(cb))}})(pickCards);
+selectThreat=(function(o){return function(desc,cb,forzar,filtro){return o(desc,genAtar(cb),forzar,filtro)}})(selectThreat);
+restart=(function(o){return function(){
+  $id('modal').classList.remove('show');
+  try{moState={pool:[],sel:[],min:0,max:0,cb:null}}catch(e){}
+  threatSelectCb=null;threatSelectFiltro=null;
+  return o.apply(this,arguments);
+}})(restart);
+
+// =====================================================================
+// ============== ASPECTO DE APLICACIÓN: SIN SELECCIÓN NI MENÚ ===========
+// =====================================================================
+function esCampoTexto(el){return !!(el&&el.closest&&el.closest('input,textarea,select,[contenteditable="true"]'))}
+document.addEventListener('contextmenu',function(ev){if(!esCampoTexto(ev.target))ev.preventDefault()});
+document.addEventListener('selectstart',function(ev){if(!esCampoTexto(ev.target))ev.preventDefault()});
+document.addEventListener('dragstart',function(ev){if(!esCampoTexto(ev.target))ev.preventDefault()});
+document.addEventListener('dblclick',function(ev){if(!esCampoTexto(ev.target)){try{const s=window.getSelection();if(s)s.removeAllRanges()}catch(e){}}});
+
+const I18N_DIC={"\"El placer de descubrir\" reúne entrevistas y textos en que habla de su curiosidad y de la importancia de hacerse preguntas.": "\"The Pleasure of Finding Things Out\" collects interviews and writings in which he talks about his curiosity and the importance of asking questions.", "\"La Técnica de Feynman\", Abakcus": "\"The Feynman Technique\", Abakcus", "# cartas": "# cards", "# de #": "# of #", "# de daño a una Amenaza": "# damage to a Threat", "# jugador": "# player", "# jugadores": "# players", "# min # s": "# min # s", "# · Acciones": "# · Actions", "# · Acciones: juegas cartas y usas habilidades.": "# · Actions: you play cards and use abilities.", "# · Combate": "# · Combat", "# · Combate: atacas a las Amenazas con tu científico y tus Aliados.": "# · Combat: you attack Threats with your scientist and your Allies.", "# · Crisis": "# · Crisis", "# · Crisis: sube la Crisis Global y aparece una Amenaza y un Encuentro.": "# · Crisis: Global Crisis rises and a Threat and an Encounter appear.", "# · Final": "# · End", "# · Final: robas # carta y descartas hasta tu límite de mano.": "# · End: you draw # card and discard down to your hand limit.", "# · Inicio": "# · Start", "# · Inicio: recuperas tu Energía y tus Aliados quedan listos.": "# · Start: you recover your Energy and your Allies get ready.", "+# CARTA": "+# CARD", "+# CARTAS": "+# CARDS", "+# de Investigación. Si la Vacuna ya está lista, el @ pierde # de vida.": "+# Research. If the Vaccine is already ready, the @ loses # life.", "=== DERROTA — La Crisis Global alcanzó # puntos. ===": "=== DEFEAT — Global Crisis reached # points. ===", "=== PARTIDA INICIADA — @ · Escenario: @ ===": "=== GAME STARTED — @ · Scenario: @ ===", "=== ¡VICTORIA! Amenaza Principal eliminada y Proyecto completado. ===": "=== VICTORY! Main Threat eliminated and Project completed. ===", "@ (#–#), físico austríaco. Formuló la mecánica ondulatoria y la ecuación que lleva su nombre, base de la física cuántica.": "@ (#–#), Austrian physicist. He formulated wave mechanics and the equation that bears his name, a foundation of quantum physics.", "@ (Científico aleatorio) vs. «@» · Solitario": "@ (Random scientist) vs. «@» · Solo", "@ (Midrange / Simplificación) vs. «@» · Solitario": "@ (Midrange / Simplification) vs. «@» · Solo", "@ (Midrange) vs. «@» · Solitario": "@ (Midrange) vs. «@» · Solo", "@ (elegido por Jugador #)": "@ (chosen by Player #)", "@ National Accelerator Laboratory": "@ National Accelerator Laboratory", "@ National Accelerator Laboratory, Beam Line": "@ National Accelerator Laboratory, Beam Line", "@ aumentó la Crisis Global en #. Una vez por turno, @ puede:": "@ raised Global Crisis by #. Once per turn, @ may:", "@ compartió con él el Premio Nobel de Física de #.": "@ shared the # Nobel Prize in Physics with him.", "@ dirigió la sección biológica del Instituto del Radio y fue uno de los pioneros de la radioterapia contra el cáncer.": "@ headed the biology section of the Radium Institute and was one of the pioneers of radiotherapy against cancer.", "@ eliminada: el @ pierde # de vida.": "@ eliminated: the @ loses # life.", "@ es una pasiva: no tiene habilidad activable.": "@ is passive: it has no activated ability.", "@ está agotado.": "@ is exhausted.", "@ obtiene +# de Intelecto.": "@ gains +# Intellect.", "@ va a recibir # de daño (@). Una vez por turno puedes:": "@ is about to take # damage (@). Once per turn you may:", "@ · Resistencia biológica hasta completar la Vacuna": "@ · Biological resistance until the Vaccine is complete", "@ — Aleatorio": "@ — Random", "@ — Científica radiante": "@ — Radiant scientist", "@, director de la División Teórica de Los Álamos, lo nombró jefe de grupo. Juntos desarrollaron una fórmula para estimar el rendimiento de una bomba de fisión.": "@, head of the Theoretical Division at Los Alamos, made him a group leader. Together they developed a formula to estimate the yield of a fission bomb.", "@: +# de Intelecto durante # turnos (ahora #).": "@: +# Intellect for # turns (now #).", "@: +# de Intelecto este turno (ahora #).": "@: +# Intellect this turn (now #).", "@: @ va de tu Mazo al Cementerio.": "@: @ goes from your Deck to the Graveyard.", "@: baraja # carta de tu Cementerio a tu Mazo": "@: shuffle # card from your Graveyard into your Deck", "@: barajas @ de vuelta al Mazo.": "@: you shuffle @ back into the Deck.", "@: descartas @.": "@: you discard @.", "@: en tu próximo turno tendrás # Energía menos.": "@: next turn you will have # less Energy.", "@: en tu próximo turno tendrás # Energías menos.": "@: next turn you will have # less Energy.", "@: este turno tendrás # Energía extra.": "@: this turn you will have # extra Energy.", "@: la reducción de Crisis es # menor.": "@: Crisis reduction is # lower.", "@: no controlas Apoyos.": "@: you control no Supports.", "ACTIVA · Crisis>#": "ACTIVE · Crisis>#", "ACTIVA · Crisis≤#": "ACTIVE · Crisis≤#", "ALIADO EN JUEGO": "ALLY IN PLAY", "ALIADO · Coste # · Intelecto # · Vida #/#": "ALLY · Cost # · Intellect # · Life #/#", "AMENAZA PRINCIPAL · Vida #/#": "MAIN THREAT · Life #/#", "AMENAZA · Vida #/#": "THREAT · Life #/#", "APOYO EN JUEGO": "SUPPORT IN PLAY", "APOYO · Coste #": "SUPPORT · Cost #", "ASIGNAR": "ASSIGN", "Abre la partida · El tablero juega primero": "Opens the game · The board plays first", "Abrir la guía rápida": "Open the quick guide", "Acaba de subir. Cada ronda sube un poco más; si llega a # se pierde. Desde # el marcador se pone rojo.": "It just rose. Each round it rises a little more; if it reaches # you lose. From # the counter turns red.", "Acciones": "Actions", "Acuñó el término «radiactividad» y propuso que la radiación es una propiedad del propio átomo.": "She coined the term \"radioactivity\" and proposed that radiation is a property of the atom itself.", "Ahora · # Acciones": "Now · # Actions", "Ahora · # Combate": "Now · # Combat", "Ahora · # Crisis": "Now · # Crisis", "Ahora · # Final": "Now · # End", "Ahora · # Inicio": "Now · # Start", "Al comienzo de tu turno, tu científico recibe # de daño.": "At the start of your turn, your scientist takes # damage.", "Al final de tu turno, si tu científico tiene menos de la mitad de su vida máxima: Crisis +#.": "At the end of your turn, if your scientist has less than half of their maximum life: Crisis +#.", "Al inicio de la Fase de Crisis, puedes infligir # de daño a cada Amenaza. Además, si la Crisis Global es mayor a #: la Investigación gana # puntos.": "At the start of the Crisis Phase, you may deal # damage to each Threat. Also, if Global Crisis is greater than #: Research gains # points.", "Al inicio de tu turno: cada científico recupera # carta de su pila de descarte y la añade a su mano.": "At the start of your turn: each scientist recovers # card from their discard pile and adds it to their hand.", "Al inicio de tu turno: elige una Amenaza; hasta el inicio de tu próximo turno no puede aumentar la Crisis Global.": "At the start of your turn: choose a Threat; until the start of your next turn it cannot raise Global Crisis.", "Al inicio de tu turno: elimina # Amenaza secundaria del juego. Si esa Amenaza tenía # o más de vida, roba una carta.": "At the start of your turn: remove # secondary Threat from the game. If that Threat had # or more life, draw a card.", "Al inicio de tu turno: mira las # primeras cartas de tu Mazo. Deja una arriba y la otra va al fondo.": "At the start of your turn: look at the top # cards of your Deck. Leave one on top and put the other on the bottom.", "Al inicio de tu turno: recuperas # de Energía y robas # carta adicional.": "At the start of your turn: you recover # Energy and draw # extra card.", "Al inicio de tu turno: reduce la Crisis Global en #.": "At the start of your turn: reduce Global Crisis by #.", "Al inicio de tu turno: roba # cartas y luego descarta # de tu mano.": "At the start of your turn: draw # cards, then discard # from your hand.", "Al inicio de tu turno: un científico recupera # puntos de vida. Si el objetivo es otro jugador, robas una carta.": "At the start of your turn: a scientist recovers # life. If the target is another player, you draw a card.", "Al momento de atacar decides si tiras una moneda: cara duplica el daño hecho, sello cancela el ataque.": "When attacking you may flip a coin: heads doubles the damage dealt, tails cancels the attack.", "Al recibir daño decides si tiras una moneda: cara duplica el daño recibido, sello anula el daño.": "When taking damage you may flip a coin: heads doubles the damage taken, tails cancels the damage.", "Al revelarse: Cada científico pierde # de vida. Persistente: Al final de tu turno, si tu científico tiene menos de la mitad de su vida máxima: Crisis +#.": "On reveal: Each scientist loses # life. Persistent: At the end of your turn, if your scientist has less than half of their maximum life: Crisis +#.", "Al revelarse: Cada científico y cada Aliado en juego reciben # de daño. Persistente: Cada curación recupera # punto menos.": "On reveal: Each scientist and each Ally in play takes # damage. Persistent: Each heal recovers # point less.", "Al revelarse: Crisis +# y cada Aliado en juego recibe # de daño. Persistente: En cada Fase de Crisis: Crisis +#. Resistencia biológica: Sin la Vacuna, recibe como máximo # de daño por ataque o Evento y recupera # de vida en cada Fase de Crisis.": "On reveal: Crisis +# and each Ally in play takes # damage. Persistent: In each Crisis Phase: Crisis +#. Biological resistance: Without the Vaccine, it takes at most # damage per attack or Event and recovers # life in each Crisis Phase.", "Al revelarse: Crisis +#. Persistente: Al comienzo de tu turno, tu científico recibe # de daño. Al ser eliminada: El @ pierde # de vida, ignorando su resistencia.": "On reveal: Crisis +#. Persistent: At the start of your turn, your scientist takes # damage. When eliminated: The @ loses # life, ignoring its resistance.", "Al revelarse: Crisis +#. Persistente: Solo la pueden atacar cartas con Intelecto # o más. Los Encuentros que reducen la Crisis la reducen # menos.": "On reveal: Crisis +#. Persistent: Only cards with Intellect # or more can attack it. Encounters that reduce Crisis reduce it by # less.", "Al revelarse: Crisis +#. Persistente: Solo puedes jugar # carta de Apoyo o Mejora por turno.": "On reveal: Crisis +#. Persistent: You can only play # Support or Upgrade card per turn.", "Al revelarse: Descarta # carta al azar de tu mano. Persistente: Tu Comunicación es # menor. En Acciones puedes descartar # cartas para eliminarla.": "On reveal: Discard # random card from your hand. Persistent: Your Communication is # lower. During Actions you may discard # cards to eliminate it.", "Al revelarse: Descarta la carta superior de tu Mazo y pierdes # de Investigación. Persistente: Solo se puede atacar con Comunicación # o más. Los Eventos sí la dañan.": "On reveal: Discard the top card of your Deck and lose # Research. Persistent: It can only be attacked with Communication # or more. Events do damage it.", "Al revelarse: Destruye el Apoyo de mayor coste que controles. Persistente: Si tu Comunicación es menor que #, los Eventos cuestan # Energía más.": "On reveal: Destroy the highest-cost Support you control. Persistent: If your Communication is less than #, Events cost # more Energy.", "Al revelarse: En tu próximo turno tienes # Energía menos. Persistente: La primera carta que juegues cada turno cuesta # Energía más.": "On reveal: Next turn you have # less Energy. Persistent: The first card you play each turn costs # more Energy.", "Al revelarse: En tu próximo turno tienes # Energías menos. Persistente: Las cartas de Apoyo cuestan # Energía más.": "On reveal: Next turn you have # less Energy. Persistent: Support cards cost # more Energy.", "Al revelarse: Revela de inmediato otro Encuentro. Persistente: Cada vez que tu científico reciba daño: Crisis +#.": "On reveal: Immediately reveal another Encounter. Persistent: Each time your scientist takes damage: Crisis +#.", "Al revelarse: Un Aliado que controles queda agotado. Persistente: Solo puedes controlar # Aliado. Si tienes #, el último vuelve a tu mano.": "On reveal: An Ally you control becomes exhausted. Persistent: You can only control # Ally. If you have #, the last one returns to your hand.", "Al revelarse: Un Apoyo que controles vuelve a tu mano. Persistente: En cada Fase de Crisis, si tu Comunicación es menor que #: Crisis +#.": "On reveal: A Support you control returns to your hand. Persistent: In each Crisis Phase, if your Communication is less than #: Crisis +#.", "Al ser eliminada": "When eliminated", "Aliado": "Ally", "Aliados": "Allies", "Amenaza Principal": "Main Threat", "Amenaza principal": "Main threat", "Amenazas": "Threats", "Amenazas eliminadas": "Threats eliminated", "Amenazas en juego": "Threats in play", "Annalen der Physik (#)": "Annalen der Physik (#)", "Annalen der Physik (#); Britannica": "Annalen der Physik (#); Britannica", "Anterior": "Previous", "Aplica a Amenazas y Encuentros. Con #, el Mazo de Amenazas lleva la Principal + # Secundarias al azar (de #) y el de Encuentros # al azar (de #).": "Applies to Threats and Encounters. With #, the Threat Deck has the Main Threat + # random Secondary ones (out of #) and the Encounter Deck # random ones (out of #).", "Apoyo": "Support", "Apoyos": "Supports", "Apoyos del equipo (#)": "Team Supports (#)", "Aprendió de un libro que le dio su profesor de secundaria a derivar bajo el signo integral. Ese método poco enseñado le dio fama de resolver integrales que nadie más lograba.": "He learned from a book his high-school teacher gave him how to differentiate under the integral sign. That rarely taught method made him famous for solving integrals no one else could.", "Arrastra hasta una Amenaza para atacar (pasa a Combate)": "Drag onto a Threat to attack (moves to Combat)", "Asignar: al recibir daño, disminuye la Crisis Global en # punto.": "Assign: when taking damage, reduce Global Crisis by # point.", "Asignar: al recibir daño, puedes recuperar una carta del Cementerio y ponerla en tu mano.": "Assign: when taking damage, you may return a card from the Graveyard to your hand.", "Asignar: baraja a tu Mazo # carta de tu Cementerio.": "Assign: shuffle # card from your Graveyard into your Deck.", "Asignar: eliges el resultado de tu siguiente lanzamiento de moneda.": "Assign: you choose the result of your next coin flip.", "Asignar: mira las # cartas de la parte superior de tu mazo, añade una a tu Mano y baraja a tu Mazo la otra.": "Assign: look at the top # cards of your deck, add one to your Hand and shuffle the other into your Deck.", "Asignar: recupera un Aliado de tu Cementerio a tu mano.": "Assign: return an Ally from your Graveyard to your hand.", "Asignar: reduce la Crisis Global en #. Si @ tiene # o más de Intelecto, un científico recupera # de vida.": "Assign: reduce Global Crisis by #. If @ has # or more Intellect, a scientist recovers # life.", "Asignar: una Amenaza recibe # de daño; si es derrotada, un científico recupera # de vida.": "Assign: a Threat takes # damage; if it is defeated, a scientist recovers # life.", "Ataca con tu científico y tus Aliados: haz clic en un atacante iluminado y luego en una Amenaza, o arrastra de uno a otra. El daño es igual al Intelecto.": "Attack with your scientist and your Allies: click a highlighted attacker and then a Threat, or drag from one to the other. Damage equals Intellect.", "Ataca con tu científico y tus Aliados: haz clic en un atacante iluminado y luego en una Amenaza, o arrastra de uno a otra. El daño es igual al Intelecto. Sin la Vacuna, el @ solo recibe # de daño por golpe.": "Attack with your scientist and your Allies: click a highlighted attacker and then a Threat, or drag from one to the other. Damage equals Intellect. Without the Vaccine, the @ only takes # damage per hit.", "Atacar": "Attack", "Atacas con tu científico y tus Aliados.": "You attack with your scientist and your Allies.", "Aumenta el Intelecto del científico en # punto durante # turnos.": "Increases the scientist's Intellect by # point for # turns.", "Aumenta en # los puntos de Intelecto.": "Increases Intellect by #.", "Aumenta la Comunicación en # punto.": "Increases Communication by # point.", "Ayuda": "Help", "Añade # carta del Cementerio a tu Mano": "Add # card from the Graveyard to your Hand", "Añade # carta desde tu Cementerio a tu Mano. Además, si la Crisis Global es mayor a #: # Científico gana # de Comunicación permanentemente.": "Add # card from your Graveyard to your Hand. Also, if Global Crisis is greater than #: # Scientist permanently gains # Communication.", "Añades @ a tu mano.": "You add @ to your hand.", "BBC Mundo; National Geographic España": "BBC Mundo; National Geographic España", "Baraja a tu Mazo hasta # cartas de tu Cementerio.": "Shuffle up to # cards from your Graveyard into your Deck.", "Baraja hasta # carta de cada tipo de tu Cementerio a tu Mazo. Además, si la Crisis Global es mayor a #: # Científico gana # de vida.": "Shuffle up to # card of each type from your Graveyard into your Deck. Also, if Global Crisis is greater than #: # Scientist gains # life.", "Bibliothèque nationale de France": "Bibliothèque nationale de France", "Biografías científicas jugables": "Playable scientific biographies", "Busca # Aliado en tu Mazo": "Search your Deck for # Ally", "Busca # Aliado en tu Mazo y añádelo a tu Mano. Si controlas # Aliados, cambia este efecto por \"roba # carta\".": "Search your Deck for # Ally and add it to your Hand. If you control # Allies, this effect becomes \"draw # card\".", "CHAMPIONS": "CHAMPIONS", "CSV": "CSV", "Cada científico pierde # de vida.": "Each scientist loses # life.", "Cada científico y cada Aliado en juego reciben # de daño.": "Each scientist and each Ally in play takes # damage.", "Cada curación recupera # punto menos.": "Each heal recovers # point less.", "Cada ronda tiene # fases, siempre en este orden": "Each round has # phases, always in this order", "Cada vez que tu científico reciba daño: Crisis +#.": "Each time your scientist takes damage: Crisis +#.", "Cambia la habilidad de Schrödinger: se lanzan dos monedas y solo con caras iguales (CC o SS) ataca a los dos enemigos. Resultado mixto: no pasa nada.": "Changes Schrödinger's ability: two coins are flipped and only with matching faces (HH or TT) does it attack both enemies. Mixed result: nothing happens.", "Campaña de prevención: el próximo aumento de Crisis por una Amenaza secundaria será # menor.": "Prevention campaign: the next Crisis increase from a secondary Threat will be # lower.", "Cargar mazo desde PDF": "Load deck from PDF", "Carpeta (mazo de científico)": "Folder (scientist deck)", "Carta": "Card", "Carta del escenario": "Scenario card", "Cartas enviadas al Cementerio durante la partida.": "Cards sent to the Graveyard during the game.", "Cartas iniciales y límite de tu mano.": "Starting cards and your hand limit.", "Cartas jugadas": "Cards played", "Cementerio": "Graveyard", "Cementerio (# cartas)": "Graveyard (# cards)", "Cementerio (#)": "Graveyard (#)", "Cerrar": "Close", "Cerrar el resumen": "Close the summary", "Cerrar la guía": "Close the guide", "Champions": "Champions", "Científica radiante": "Radiant scientist", "Científico": "Scientist", "Científico aleatorio": "Random scientist", "Clic en una carta de la mano para jugarla · Clic en Apoyos/Aliados para usar sus habilidades.": "Click a card in your hand to play it · Click Supports/Allies to use their abilities.", "Clic en una carta de la mano para jugarla · Clic en Mejoras/Apoyos/Aliados para usar sus habilidades. Voluntad del caos se dispara sola.": "Click a card in your hand to play it · Click Upgrades/Supports/Allies to use their abilities. Will of Chaos triggers on its own.", "Clic para cerrar": "Click to close", "Clic sobre el Científico o un Aliado iluminado (⚔) para declarar su ataque. Quedan # atacante(s).": "Click the Scientist or a highlighted Ally (⚔) to declare its attack. # attacker(s) left.", "Clic: Asignar · Arrastra hasta una Amenaza para atacar": "Click: Assign · Drag onto a Threat to attack", "Com #": "Com #", "Combate": "Combat", "Comenzar misión": "Start mission", "Compartió el Premio Nobel de Física de # con @ \"por el descubrimiento de nuevas formas productivas de la teoría atómica\".": "He shared the # Nobel Prize in Physics with @ \"for the discovery of new productive forms of atomic theory\".", "Completo": "Full", "Comunic.": "Commun.", "Comunicación": "Communication", "Comunicación: tus cartas iniciales y tu límite de mano.": "Communication: your starting cards and your hand limit.", "Con @ formuló en @, a fines de los años #, la teoría V–A de la interacción débil, clave para explicar la desintegración beta.": "With @ he formulated at @, in the late #s, the V–A theory of the weak interaction, key to explaining beta decay.", "Concepto científico": "Scientific concept", "Concepto de la mecánica cuántica: al medir, el sistema pasa de una superposición a un único estado. Schrödinger cuestionó esta idea con su experimento del gato.": "A concept from quantum mechanics: when measured, a system goes from a superposition to a single state. Schrödinger questioned this idea with his cat thought experiment.", "Concepto de la mecánica cuántica: un sistema puede estar en varios estados a la vez hasta ser medido. Es la idea que ilustra el gato de Schrödinger.": "A concept from quantum mechanics: a system can be in several states at once until it is measured. It is the idea illustrated by Schrödinger's cat.", "Concepto general": "General concept", "Concepto: el carácter probabilístico de la mecánica cuántica, que predice probabilidades y no resultados seguros. Schrödinger debatió esta interpretación durante toda su vida.": "Concept: the probabilistic nature of quantum mechanics, which predicts probabilities rather than certain outcomes. Schrödinger debated this interpretation all his life.", "Conferencia de Feynman, @ (# dic. #)": "Feynman lecture, @ (Dec. #, #)", "Configuración": "Settings", "Confirmar (#)": "Confirm (#)", "Copiar": "Copy", "Copiar el registro al portapapeles": "Copy the log to the clipboard", "Crisis": "Crisis", "Crisis +# por turno del tablero": "Crisis +# per board turn", "Crisis +# y cada Aliado en juego recibe # de daño.": "Crisis +# and each Ally in play takes # damage.", "Crisis +#.": "Crisis +#.", "Crisis +#. Si hay # Amenazas en juego, Crisis +# adicional.": "Crisis +#. If there are # Threats in play, an additional Crisis +#.", "Crisis Global": "Global Crisis", "Crisis Global: sube en cada Fase de Crisis. Si llega a #, el equipo pierde.": "Global Crisis: rises in each Crisis Phase. If it reaches #, the team loses.", "Crisis final": "Final Crisis", "Crisis −#. Hasta la próxima ronda, el primer aumento de Crisis por una Amenaza secundaria se reduce en #.": "Crisis −#. Until the next round, the first Crisis increase from a secondary Threat is reduced by #.", "Crisis −#. Si controlas al menos un Apoyo, Crisis −# adicional.": "Crisis −#. If you control at least one Support, an additional Crisis −#.", "Cuando tu científico recibe daño, puedes transferir # punto de ese daño a un Aliado que controles.": "When your scientist takes damage, you may transfer # point of that damage to an Ally you control.", "Cuando una Mejora entra en juego: puedes disminuir la Crisis Global en #. Si la Crisis Global es mayor a #: puedes disminuirla # punto más.": "When an Upgrade enters play: you may reduce Global Crisis by #. If Global Crisis is greater than #: you may reduce it by # more point.", "Curie": "Curie", "Cómo se juega en pantalla": "How to play on screen", "DERROTA — La Crisis Global alcanzó # puntos.": "DEFEAT — Global Crisis reached # points.", "Daño infligido": "Damage dealt", "De adolescente aprendió cálculo y otras ramas de la matemática por su cuenta, adelantándose ampliamente a sus compañeros; se conservan sus cuadernos de esa época.": "As a teenager he taught himself calculus and other branches of mathematics, far ahead of his classmates; his notebooks from that time survive.", "Declinas usar Ingenio extravagante esta ronda.": "You decline to use Extravagant Ingenuity this round.", "Demostración": "Demo", "Demostración · salir": "Demo · exit", "Derrota": "Defeat", "Descarta # carta al azar de tu mano.": "Discard # random card from your hand.", "Descarta # carta al azar de tu mano. Si no puedes, Crisis +#.": "Discard # random card from your hand. If you can't, Crisis +#.", "Descarta # carta para que este turno un Científico gane Intelecto igual al coste de dicha carta. Además, si la Crisis Global es mayor a #: Gana # de intelecto adicional.": "Discard # card so that this turn a Scientist gains Intellect equal to that card's cost. Also, if Global Crisis is greater than #: Gain # additional Intellect.", "Descarta # cartas de tu mano para eliminar @": "Discard # cards from your hand to eliminate @", "Descarta hasta el límite de mano (#)": "Discard down to your hand limit (#)", "Descarta la carta superior de tu Mazo y pierdes # de Investigación.": "Discard the top card of your Deck and lose # Research.", "Descartas # carta(s) por límite de mano.": "You discard # card(s) due to your hand limit.", "Desmentir (descarta #)": "Debunk (discard #)", "Después: Acciones": "Next: Actions", "Después: Combate": "Next: Combat", "Después: Crisis": "Next: Crisis", "Después: Final": "Next: End", "Después: Inicio": "Next: Start", "Destruye el Apoyo de mayor coste que controles.": "Destroy the highest-cost Support you control.", "Dirigió la Escuela de Física Teórica del @ desde #, por invitación del gobierno irlandés.": "He directed the School of Theoretical Physics at the @ from #, at the invitation of the Irish government.", "Dos científicos se turnan; el tablero juega entre cada turno.": "Two scientists take turns; the board plays between each turn.", "Duración": "Duration", "Durante años procesó toneladas de pecblenda en un cobertizo para obtener cantidades mínimas de radio.": "For years she processed tons of pitchblende in a shed to obtain minute amounts of radium.", "Durante la Primera Guerra Mundial sirvió como oficial de artillería en el ejército austrohúngaro.": "During the First World War he served as an artillery officer in the Austro-Hungarian army.", "Durante tu ataque: Inflige # de daño a cada Amenaza en mesa. Además, si la Crisis Global es mayor a #: inflige # de daño a una Amenaza a elección.": "During your attack: Deal # damage to each Threat on the table. Also, if Global Crisis is greater than #: deal # damage to a Threat of your choice.", "Durante tu ataque: Inflige # de daño a una Amenaza. Además, si la Crisis Global es mayor a #: inflige # de daño adicional.": "During your attack: Deal # damage to a Threat. Also, if Global Crisis is greater than #: deal # additional damage.", "Durante tu ataque: inflige # de daño a una Amenaza. Si sobrevive, queda Neutralizada hasta el final de la ronda siguiente (sus efectos no se aplican).": "During your attack: deal # damage to a Threat. If it survives, it is Neutralized until the end of the next round (its effects do not apply).", "Durante tu ataque: inflige # de daño directo a una Amenaza (ignora la resistencia biológica). Si la Amenaza es derrotada, reduce la Crisis Global en #.": "During your attack: deal # direct damage to a Threat (ignores biological resistance). If the Threat is defeated, reduce Global Crisis by #.", "Durante tu ataque: inflige # de daño directo a una Amenaza. Si la Amenaza es derrotada, reduce la Crisis Global en #.": "During your attack: deal # direct damage to a Threat. If the Threat is defeated, reduce Global Crisis by #.", "Durante una estadía en los Alpes suizos, a fines de #, desarrolló la idea de la ecuación de onda que transformó la física.": "During a stay in the Swiss Alps, in late #, he developed the idea of the wave equation that transformed physics.", "EBSCO Research Starters; National MagLab": "EBSCO Research Starters; National MagLab", "ENCUENTRO": "ENCOUNTER", "EVENTO · Coste #": "EVENT · Cost #", "Edición Expociencias": "Expociencias Edition", "El @ pierde # de vida, ignorando su resistencia.": "The @ loses # life, ignoring its resistance.", "El Instituto del Radio, hoy @, se fundó en #; @ dirigió su laboratorio de física y química.": "The Radium Institute, today the @, was founded in #; @ directed its physics and chemistry laboratory.", "El Virus pierde su resistencia biológica · Crisis -#": "The Virus loses its biological resistance · Crisis -#", "El botón «Guía» de arriba vuelve a abrir estas páginas cuando quieras.": "The «Guide» button at the top reopens these pages whenever you want.", "El escenario ataca": "The scenario strikes", "El hito de su carrera, con el efecto más fuerte del mazo.": "The milestone of his career, with the strongest effect in the deck.", "El próximo lanzamiento de moneda de este turno se resuelve con el mejor resultado para ti, sin lanzar la moneda.": "Your next coin flip this turn is resolved with the best result for you, without flipping the coin.", "El registro guarda cada fase, carta y efecto con su ronda y hora. El CSV se abre en cualquier planilla y sirve como insumo para el estudio pretest/post-test del proyecto.": "The log records every phase, card and effect with its round and time. The CSV opens in any spreadsheet and serves as input for the project's pretest/post-test study.", "El tablero juega entre cada turno de científico: Crisis +# por turno del tablero.": "The board plays between each scientist's turn: Crisis +# per board turn.", "Elegir número de jugadores y mazos": "Choose number of players and decks", "Elige atacantes y objetivos": "Choose attackers and targets", "Elige la Amenaza objetivo haciendo clic sobre ella.": "Choose the target Threat by clicking on it.", "Elige un beneficio:": "Choose a benefit:", "Elige un científico. La primera vez por ronda que ese científico juegue una carta, roba una.": "Choose a scientist. The first time each round that scientist plays a card, draw one.", "Eliminadas": "Eliminated", "Empezar partida": "Start game", "En \"@\" (#) propuso que los seres vivos se mantienen consumiendo \"entropía negativa\" de su entorno.": "In \"@\" (#) he proposed that living beings sustain themselves by consuming \"negative entropy\" from their environment.", "En # dejó Alemania en rechazo a la persecución nazi contra sus colegas judíos.": "In # he left Germany in protest against the Nazi persecution of his Jewish colleagues.", "En # dio en @ la conferencia \"There’s Plenty of Room at the Bottom\", donde imaginó manipular la materia átomo por átomo: un antecedente de la nanotecnología.": "In # he gave the lecture \"There's Plenty of Room at the Bottom\" at @, imagining manipulating matter atom by atom: a forerunner of nanotechnology.", "En # integró la Comisión Rogers que investigó la explosión del transbordador Challenger. En una audiencia televisada mostró con un vaso de agua helada que el material de las juntas perdía elasticidad con el frío.": "In # he served on the Rogers Commission that investigated the Challenger shuttle explosion. At a televised hearing he showed with a glass of ice water that the joint material lost elasticity in the cold.", "En # interpretó en el @ los experimentos de dispersión @–@ con su modelo de partones: el protón contiene partículas cargadas más pequeñas, antecedente de la comprensión de los quarks.": "In # at @ he interpreted the @–@ scattering experiments with his parton model: the proton contains smaller charged particles, a forerunner of our understanding of quarks.", "En # participó en la primera Conferencia Solvay en Bruselas, donde fue la única mujer entre los asistentes.": "In # she took part in the first Solvay Conference in Brussels, where she was the only woman among the attendees.", "En # pasó una temporada enseñando en el Centro Brasileño de Investigaciones Físicas de Río de Janeiro y desfiló en el carnaval con una escuela de samba.": "In # he spent a season teaching at the Brazilian Center for Physics Research in Rio de Janeiro and paraded in the carnival with a samba school.", "En # propuso el experimento mental del gato encerrado, vivo y muerto a la vez, para mostrar lo absurdo de aplicar la superposición a objetos cotidianos.": "In # he proposed the thought experiment of the cat locked in a box, alive and dead at the same time, to show the absurdity of applying superposition to everyday objects.", "En # publicó \"@\", basado en conferencias dictadas en Dublín, que inspiró a futuros descubridores de la estructura del ADN.": "In # he published \"@\", based on lectures given in Dublin, which inspired future discoverers of the structure of DNA.", "En # publicó una serie de cuatro artículos, \"La cuantización como problema de valores propios\", que fundaron la mecánica ondulatoria.": "In # he published a series of four papers, \"Quantization as an Eigenvalue Problem\", which founded wave mechanics.", "En # sucedió a @ en la cátedra de física teórica de la Universidad de Berlín.": "In # he succeeded @ in the chair of theoretical physics at the University of Berlin.", "En #, junto a André-Louis Debierne, aisló el radio como metal puro.": "In #, together with André-Louis Debierne, she isolated radium as a pure metal.", "En @ dictó un curso introductorio cuyas clases se publicaron como The Feynman Lectures on Physics, en tres volúmenes, aún usados en todo el mundo.": "At @ he taught an introductory course whose lectures were published as The Feynman Lectures on Physics, in three volumes, still used around the world.", "En Combate, haz clic en tu científico o en un Aliado y luego en una Amenaza, o arrastra de uno a otra.": "In Combat, click your scientist or an Ally and then a Threat, or drag from one to the other.", "En Los Álamos abría por diversión las cajas fuertes con documentos secretos del @ y dejaba notas para demostrar que eran inseguras.": "At Los Alamos he cracked safes holding secret @ documents for fun and left notes to show they were insecure.", "En cada Fase de Crisis, si tu Comunicación es menor que #: Crisis +#.": "In each Crisis Phase, if your Communication is less than #: Crisis +#.", "En cada Fase de Crisis: Crisis +#.": "In each Crisis Phase: Crisis +#.", "En diciembre de #, junto a Pierre Curie, anunció el descubrimiento del radio.": "In December #, together with Pierre Curie, she announced the discovery of radium.", "En el Centro del Acelerador Lineal de Stanford (@) presentó en # su interpretación de los experimentos sobre la estructura del protón.": "At the Stanford Linear Accelerator Center (@) he presented in # his interpretation of the experiments on the structure of the proton.", "En julio de # los Curie anunciaron el polonio, al que nombraron en honor a Polonia, su país natal.": "In July # the Curies announced polonium, named in honor of Poland, her native country.", "En la Primera Guerra Mundial organizó unidades móviles de rayos X, las «petites Curies», para atender a los heridos cerca del frente.": "In the First World War she organized mobile X-ray units, the «petites Curies», to treat the wounded near the front.", "En la cafetería de la Universidad de Cornell vio a alguien lanzar un plato y analizó por diversión cómo giraba y oscilaba. Ese juego lo devolvió a la física y lo condujo a su trabajo premiado.": "In the Cornell University cafeteria he saw someone toss a plate and, for fun, analyzed how it spun and wobbled. That game brought him back to physics and led to his prize-winning work.", "En la década de # desarrolló la formulación de integral de caminos: la probabilidad de un proceso cuántico se obtiene sumando todas las trayectorias posibles entre dos puntos.": "In the #s he developed the path integral formulation: the probability of a quantum process is obtained by summing over all possible paths between two points.", "En la prueba Trinity (# de julio de #), la primera detonación nuclear, afirmó haber mirado la explosión sin gafas oscuras, protegido solo por el parabrisas de un camión.": "At the Trinity test (July #, #), the first nuclear detonation, he claimed to have watched the explosion without dark glasses, protected only by a truck windshield.", "En respuesta a un Encuentro perjudicial: cancela su efecto. Se activa sola si tienes la Energía.": "In response to a harmful Encounter: cancel its effect. It triggers on its own if you have the Energy.", "En tu próximo turno tienes # Energía menos.": "Next turn you have # less Energy.", "En tu próximo turno tienes # Energías menos.": "Next turn you have # less Energy.", "Encarnas a un científico real y su mazo cuenta su vida: cada carta es un descubrimiento, un colaborador, una institución o un rasgo de su carrera.": "You play as a real scientist and their deck tells their life: each card is a discovery, a collaborator, an institution or a feature of their career.", "Encuentro": "Encounter", "Encuentros": "Encounters", "Encuentros revelados": "Revealed Encounters", "Encuentros revelados (#)": "Revealed Encounters (#)", "Encyclopaedia Britannica": "Encyclopaedia Britannica", "Encyclopaedia Britannica, \"@\"": "Encyclopaedia Britannica, \"@\"", "Encyclopaedia Britannica, \"Richard Feynman\"": "Encyclopaedia Britannica, \"Richard Feynman\"", "Energía": "Energy", "Energía: paga el coste de tus cartas. Se recarga al inicio de cada turno.": "Energy: pays the cost of your cards. It recharges at the start of each turn.", "Entre # y # publicó una serie de artículos sobre la teoría atómica del helio líquido superfluido.": "Between # and # he published a series of papers on the atomic theory of superfluid liquid helium.", "Equipo de #": "Team of #", "Equipo · clic para ver su campo": "Team · click to view their field", "Es el daño que haces al atacar.": "It is the damage you deal when attacking.", "Escenario": "Scenario", "Escenario ·": "Scenario ·", "Escenario · ver misión": "Scenario · view mission", "Espera tu turno": "Wait your turn", "Esta carta aporta una mecánica de juego. Aún no tiene un hecho verificable asociado en la tabla de trazabilidad.": "This card provides a game mechanic. It has no verifiable fact associated with it yet in the traceability table.", "Este turno tienes # Energías extra (solo # si la Crisis es mayor a #).": "This turn you have # extra Energy (only # if Crisis is greater than #).", "Estudió en la «Universidad Flotante» clandestina de Varsovia y llegó a París en # con muy pocos recursos para continuar su formación.": "She studied at the clandestine «Flying University» in Warsaw and arrived in Paris in # with very few resources to continue her education.", "Estudió física en el Instituto Tecnológico de Massachusetts (@), donde se graduó en #.": "He studied physics at the Massachusetts Institute of Technology (@), graduating in #.", "Evento": "Event", "Evento de combate disponible": "Combat Event available", "Evento legendario": "Legendary event", "Expociencias # · Biografías científicas jugables": "Expociencias # · Playable scientific biographies", "Falta energía (#)": "Not enough Energy (#)", "Fase Final": "End Phase", "Fase de Acciones": "Action Phase", "Fase de Combate": "Combat Phase", "Fase de Crisis": "Crisis Phase", "Fase de Inicio": "Start Phase", "Feynman": "Feynman", "Feynman y Leighton, ¿Está usted de broma, Sr. Feynman? (#)": "Feynman and Leighton, Surely You're Joking, Mr. Feynman! (#)", "Feynman, El placer de descubrir (#)": "Feynman, The Pleasure of Finding Things Out (#)", "Feynman, ¿Está usted de broma, Sr. Feynman? (#)": "Feynman, Surely You're Joking, Mr. Feynman! (#)", "Fin de la partida": "Game over", "Final": "End", "Fue pionera del estudio de la radiactividad y en # se convirtió en la primera mujer profesora de la Sorbona.": "She was a pioneer in the study of radioactivity and in # became the first woman professor at the Sorbonne.", "Fue profesor del Instituto de Tecnología de California (@) desde # hasta su muerte, y renovó allí el plan de estudios de física.": "He was a professor at the California Institute of Technology (@) from # until his death, and reshaped its physics curriculum.", "Fue profesor en la @ (#–#), donde formuló la mecánica ondulatoria.": "He was a professor at the @ (#–#), where he formulated wave mechanics.", "Fuente: \"La Técnica de Feynman\", Abakcus": "Source: \"The Feynman Technique\", Abakcus", "Fuente: @ National Accelerator Laboratory": "Source: @ National Accelerator Laboratory", "Fuente: @ National Accelerator Laboratory, Beam Line": "Source: @ National Accelerator Laboratory, Beam Line", "Fuente: Annalen der Physik (#)": "Source: Annalen der Physik (#)", "Fuente: Annalen der Physik (#); Britannica": "Source: Annalen der Physik (#); Britannica", "Fuente: BBC Mundo; National Geographic España": "Source: BBC Mundo; National Geographic España", "Fuente: Bibliothèque nationale de France": "Source: Bibliothèque nationale de France", "Fuente: Concepto científico": "Source: Scientific concept", "Fuente: Concepto general": "Source: General concept", "Fuente: Conferencia de Feynman, @ (# dic. #)": "Source: Feynman lecture, @ (Dec. #, #)", "Fuente: EBSCO Research Starters; National MagLab": "Source: EBSCO Research Starters; National MagLab", "Fuente: Encyclopaedia Britannica": "Source: Encyclopaedia Britannica", "Fuente: Encyclopaedia Britannica, \"Richard Feynman\"": "Source: Encyclopaedia Britannica, \"Richard Feynman\"", "Fuente: Feynman y Leighton, ¿Está usted de broma, Sr. Feynman? (#)": "Source: Feynman and Leighton, Surely You're Joking, Mr. Feynman! (#)", "Fuente: Feynman, El placer de descubrir (#)": "Source: Feynman, The Pleasure of Finding Things Out (#)", "Fuente: Feynman, ¿Está usted de broma, Sr. Feynman? (#)": "Source: Feynman, Surely You're Joking, Mr. Feynman! (#)", "Fuente: Informe de la Comisión Presidencial Rogers (#)": "Source: Report of the Presidential Rogers Commission (#)", "Fuente: Institut Curie": "Source: Institut Curie", "Fuente: Institut Curie; Britannica": "Source: Institut Curie; Britannica", "Fuente: Instituts Internationaux Solvay": "Source: Instituts Internationaux Solvay", "Fuente: National MagLab, \"Richard Feynman\"": "Source: National MagLab, \"Richard Feynman\"", "Fuente: National MagLab; Britannica": "Source: National MagLab; Britannica", "Fuente: National Park Service, Manhattan Project": "Source: National Park Service, Manhattan Project", "Fuente: NobelPrize.org": "Source: NobelPrize.org", "Fuente: NobelPrize.org, Chemistry #": "Source: NobelPrize.org, Chemistry #", "Fuente: NobelPrize.org, Physics #": "Source: NobelPrize.org, Physics #", "Fuente: NobelPrize.org, The Nobel Prize in Physics #": "Source: NobelPrize.org, The Nobel Prize in Physics #", "Fuente: NobelPrize.org; Britannica": "Source: NobelPrize.org; Britannica", "Fuente: Physics Today, \"A look inside Feynman’s calculus notebook\"; Britannica": "Source: Physics Today, \"A look inside Feynman's calculus notebook\"; Britannica", "Fuente: Schrödinger, \"Die gegenwärtige Situation in der Quantenmechanik\" (#)": "Source: Schrödinger, \"Die gegenwärtige Situation in der Quantenmechanik\" (#)", "Fuente: Schrödinger, What Is Life? (#)": "Source: Schrödinger, What Is Life? (#)", "Fuente: The Feynman Lectures on Physics (@)": "Source: The Feynman Lectures on Physics (@)", "Ganar # de vida": "Gain # life", "Ganas": "You win", "Guardar datos (CSV)": "Save data (CSV)", "Guardar el registro como tabla para análisis": "Save the log as a table for analysis", "Guardar el registro completo como texto": "Save the full log as text", "Guardar registro (TXT)": "Save log (TXT)", "Guía": "Guide", "Guía rápida · Champions of Science": "Quick guide · Champions of Science", "Haz clic en una carta iluminada de tu mano.": "Click a highlighted card in your hand.", "Haz clic para jugar": "Click to play", "Hecho histórico": "Historical fact", "Hizo su doctorado en la @, donde obtuvo calificación perfecta en matemáticas y física en el examen de ingreso.": "He did his doctorate at @, where he earned perfect scores in mathematics and physics on the entrance exam.", "INACTIVA · requiere Crisis>#": "INACTIVE · requires Crisis>#", "INACTIVA · requiere Crisis≤#": "INACTIVE · requires Crisis≤#", "Inflige # de daño a una Amenaza por cada Apoyo y Mejora que controles.": "Deal # damage to a Threat for each Support and Upgrade you control.", "Informe de la Comisión Presidencial Rogers (#)": "Report of the Presidential Rogers Commission (#)", "Ingenio extravagante": "Extravagant Ingenuity", "Ingenio extravagante — Una vez por ronda: · Si ya has gastado # o más energías este turno, la siguiente carta cuesta # menos. · Si recibes daño o la Crisis Global supera #, busca una carta \"Técnica de Feynman:\" o \"R.F.:\" en tu Mazo.": "Extravagant Ingenuity — Once per round: · If you have already spent # or more Energy this turn, your next card costs # less. · If you take damage or Global Crisis exceeds #, search your Deck for a \"Feynman Technique:\" or \"R.F.:\" card.", "Ingenio extravagante: elige la carta a añadir a tu Mano": "Extravagant Ingenuity: choose the card to add to your Hand", "Ingenio: reducir coste (-#)": "Ingenuity: reduce cost (-#)", "Inicio": "Start", "Inicio de partida": "Game setup", "Institut Curie": "Institut Curie", "Institut Curie; Britannica": "Institut Curie; Britannica", "Instituts Internationaux Solvay": "Instituts Internationaux Solvay", "Int #": "Int #", "Intelecto": "Intellect", "Intelecto: es el daño que hace tu científico al atacar.": "Intellect: the damage your scientist deals when attacking.", "Introdujo los diagramas de Feynman, que simplificaron enormemente el cálculo y la descripción de las interacciones entre partículas.": "He introduced Feynman diagrams, which greatly simplified the calculation and description of interactions between particles.", "Investigación": "Research", "Investigación: sube al atacar Amenazas secundarias. Al llegar a la meta se completa el Proyecto y puedes atacar a la Amenaza Principal.": "Research: rises when attacking secondary Threats. When it reaches the goal, the Project is complete and you can attack the Main Threat.", "Ir a Combate ⚔": "Go to Combat ⚔", "J#": "P#", "J# #": "P# #", "J# @, J# @ · @": "P# @, P# @ · @", "J# @, J# @, J# @ · @": "P# @, P# @, P# @ · @", "J# Curie · J# Feynman vs. «@» · # jugadores · Crisis +# por turno del tablero": "P# Curie · P# Feynman vs. «@» · # players · Crisis +# per board turn", "J# Feynman · J# Curie · J# Schrödinger vs. «@» · # jugadores · Crisis +# por turno del tablero": "P# Feynman · P# Curie · P# Schrödinger vs. «@» · # players · Crisis +# per board turn", "J# Feynman · J# Schrödinger · J# Curie vs. «@» · # jugadores · Crisis +# por turno del tablero": "P# Feynman · P# Schrödinger · P# Curie vs. «@» · # players · Crisis +# per board turn", "J# roba # cartas iniciales.": "P# draws # starting cards.", "J# · @": "P# · @", "J# · @ · Campo": "P# · @ · Field", "J# · @ · Cementerio (#)": "P# · @ · Graveyard (#)", "J# · Curie (#/#)": "P# · Curie (#/#)", "J# · Feynman (#/#) · tú": "P# · Feynman (#/#) · you", "J# · Richard Feynman": "P# · Richard Feynman", "J# · Schrödinger (#/#)": "P# · Schrödinger (#/#)", "John A. Wheeler dirigió su tesis doctoral en Princeton, que aplicó el principio de mínima acción a la mecánica cuántica. Juntos formularon la teoría del absorbedor.": "John A. Wheeler supervised his doctoral thesis at Princeton, which applied the principle of least action to quantum mechanics. Together they formulated the absorber theory.", "Juega cartas y activa habilidades": "Play cards and activate abilities", "Juegas cartas y usas habilidades. Aquí decides tú.": "You play cards and use abilities. This is where you decide.", "Jugador #": "Player #", "Jugadores y mazos…": "Players and decks…", "Jugar": "Play", "Jugar directo: # jugador · Feynman": "Quick play: # player · Feynman", "LEGENDARIO · Coste #": "LEGENDARY · Cost #", "La Crisis Global alcanzó # puntos.": "Global Crisis reached # points.", "La Crisis Global sube y se revelan una Amenaza y un Encuentro. No tienes que hacer nada.": "Global Crisis rises and a Threat and an Encounter are revealed. You don't need to do anything.", "La Crisis sube": "Crisis rises", "La barra de fases bajo los marcadores marca siempre dónde estás, y la franja de abajo te dice qué hacer.": "The phase bar under the counters always shows where you are, and the strip below tells you what to do.", "La demostración usa el mazo de Feynman, meta de Investigación # y un orden de cartas fijo: cada presentación se juega igual.": "The demo uses the Feynman deck, a Research goal of # and a fixed card order: every presentation plays the same way.", "La ecuación de Schrödinger (#) describe cómo evoluciona en el tiempo el estado de un sistema cuántico.": "The Schrödinger equation (#) describes how the state of a quantum system evolves over time.", "La función de onda ψ, central en su teoría, contiene toda la información sobre el estado de un sistema cuántico.": "The wave function ψ, central to his theory, contains all the information about the state of a quantum system.", "La lista de arriba arma una partida de # jugador. Para # o #, usa «Jugadores y mazos».": "The list above sets up a # player game. For # or #, use «Players and decks».", "La partida terminó. Revisa el resumen o pulsa «Nueva partida».": "The game is over. Check the summary or press «New game».", "La primera carta de Evento que juegues cada ronda cuesta # Energía menos.": "The first Event card you play each round costs # less Energy.", "La primera carta que juegues cada turno cuesta # Energía más.": "The first card you play each turn costs # more Energy.", "La primera vez en cada ronda que un científico recupere Vida, reduce la Crisis Global en #.": "The first time each round that a scientist recovers Life, reduce Global Crisis by #.", "La primera vez en cada turno que un científico recupere Vida, reduce la Crisis Global en #.": "The first time each turn that a scientist recovers Life, reduce Global Crisis by #.", "La primera vez que juegues un Evento cada turno: mira la carta superior de tu Mazo y puedes jugarla reduciendo su coste en #, o devolverla.": "The first time you play an Event each turn: look at the top card of your Deck; you may play it reducing its cost by #, or put it back.", "La primera vez que recibas daño cada ronda, reduce ese daño en #.": "The first time you take damage each round, reduce that damage by #.", "La próxima vez que necesites lanzar una moneda este turno, lanza dos monedas y elige cuál usar.": "The next time you need to flip a coin this turn, flip two coins and choose which one to use.", "Lanza una moneda hasta que salga sello. Por cada cara: inflige # de daño y disminuye la Crisis Global en # punto.": "Flip a coin until it lands tails. For each heads: deal # damage and reduce Global Crisis by # point.", "Lanza una moneda: cara recupera # de Vida, sello recupera # de Vida.": "Flip a coin: heads recovers # Life, tails recovers # Life.", "Lanza una moneda: cara suma # de Intelecto este turno, sello suma #.": "Flip a coin: heads adds # Intellect this turn, tails adds #.", "Las cartas de Apoyo cuestan # Energía más.": "Support cards cost # more Energy.", "Leer": "Read", "Legendario": "Legendary", "Libro autobiográfico de # con anécdotas de su vida dentro y fuera de la ciencia, que muestran su forma poco convencional de enfrentar los problemas.": "An autobiographical book from # with anecdotes from his life inside and outside science, showing his unconventional way of tackling problems.", "Lo que miden los marcadores": "What the counters measure", "Los Apoyos reactivos de tus compañeros (Cafetería, Princeton, laboratorios, Solvay…) también se activan en tu turno. Los de habilidad o efecto continuo solo funcionan para su dueño, en su turno.": "Your teammates' reactive Supports (Cafeteria, Princeton, laboratories, Solvay…) also trigger on your turn. Those with an ability or a continuous effect only work for their owner, on their turn.", "Los cambios de carpeta, meta o tamaño reinician la partida.": "Changing the folder, goal or size restarts the game.", "Los estados estacionarios son las soluciones de su ecuación que no cambian en el tiempo y explican los niveles de energía del átomo.": "Stationary states are the solutions of his equation that do not change over time and explain the energy levels of the atom.", "Los tipos de carta": "Card types", "Límite de # Amenazas en juego: no se revela ninguna.": "Limit of # Threats in play: none is revealed.", "MEJORA EN JUEGO": "UPGRADE IN PLAY", "MEJORA · Coste #": "UPGRADE · Cost #", "Mantuvo con @ una larga amistad y correspondencia; sus cartas de # sobre los fundamentos de la física cuántica precedieron al experimento del gato.": "He kept up a long friendship and correspondence with @; their # letters on the foundations of quantum physics preceded the cat experiment.", "Marie Skłodowska-Curie (#–#), física y química polaco-francesa, pionera de la radiactividad y primera persona en recibir dos Premios Nobel en dos ciencias distintas.": "Marie Skłodowska-Curie (#–#), Polish-French physicist and chemist, pioneer of radioactivity and the first person to win two Nobel Prizes in two different sciences.", "Mazo": "Deck", "Mazo de Amenazas": "Threat Deck", "Mazo de Encuentros": "Encounter Deck", "Mazos del escenario": "Scenario decks", "Mejora": "Upgrade", "Mejoras": "Upgrades", "Meta de Investigación": "Research goal", "Meta de Investigación: #. Derrota si la Crisis llega a #.": "Research goal: #. Defeat if Crisis reaches #.", "Meta: Vacuna (# de Investigación) y derrotar al Virus": "Goal: Vaccine (# Research) and defeat the Virus", "Midrange / Simplificación": "Midrange / Simplification", "Mientras Crisis>#: +# Comunicación.": "While Crisis>#: +# Communication.", "Mientras Crisis>#: +# Intelecto.": "While Crisis>#: +# Intellect.", "Mientras Crisis>#: al final del turno, +# de vida.": "While Crisis>#: at the end of the turn, +# life.", "Mientras Crisis≤#: # vez por turno, tras jugar un Evento: gana # vida o # daño a una Amenaza.": "While Crisis≤#: # time per turn, after playing an Event: gain # life or deal # damage to a Threat.", "Mientras Crisis≤#: cuando un Aliado entra en juego, roba # carta.": "While Crisis≤#: when an Ally enters play, draw # card.", "Mientras Crisis≤#: el primer Apoyo de cada turno cuesta # menos.": "While Crisis≤#: the first Support each turn costs # less.", "Mira las primeras # cartas de tu mazo. Añade a tu mano # carta de Mejora o Apoyo y coloca el resto en el fondo del mazo.": "Look at the top # cards of your deck. Add # Upgrade or Support card to your hand and put the rest on the bottom of the deck.", "Mira todas las cartas de tu mazo, elige una y ponla al inicio del mazo.": "Look at all the cards in your deck, choose one and put it on top of the deck.", "National MagLab, \"Richard Feynman\"": "National MagLab, \"Richard Feynman\"", "National MagLab; Britannica": "National MagLab; Britannica", "National Park Service, Manhattan Project": "National Park Service, Manhattan Project", "No": "No", "No activas @.": "You do not activate @.", "No mostrar al abrir": "Don't show on startup", "No quedan atacantes disponibles. Termina el turno cuando quieras.": "No attackers left. End the turn whenever you like.", "No recibes daño (@).": "You take no damage (@).", "No usarla ahora": "Don't use it now", "NobelPrize.org": "NobelPrize.org", "NobelPrize.org, Chemistry #": "NobelPrize.org, Chemistry #", "NobelPrize.org, Physics #": "NobelPrize.org, Physics #", "NobelPrize.org, The Nobel Prize in Physics #": "NobelPrize.org, The Nobel Prize in Physics #", "NobelPrize.org; Britannica": "NobelPrize.org; Britannica", "NobelPrize.org; Encyclopaedia Britannica": "NobelPrize.org; Encyclopaedia Britannica", "Nueva Amenaza": "New Threat", "Nueva partida": "New game", "Número de jugadores": "Number of players", "OF": "OF", "Objetivo: completa el Proyecto Científico «Desarrollo de la Vacuna» (# de Investigación) y derrota al @ antes de que la Crisis Global llegue a #.": "Goal: complete the Scientific Project «Vaccine Development» (# Research) and defeat the @ before Global Crisis reaches #.", "Orden de cada ronda:": "Order of each round:", "P": "P", "Paga el coste de tus cartas. Se recarga en cada turno.": "Pays the cost of your cards. It recharges every turn.", "Pagaste con Energía. Cada carta muestra su coste en la esquina; la Energía se recarga en la próxima Fase de Inicio.": "You paid with Energy. Each card shows its cost in the corner; Energy recharges in the next Start Phase.", "Participó en las grandes reuniones científicas de su época; en # fue la única mujer en la primera Conferencia Solvay.": "She took part in the great scientific meetings of her time; in # she was the only woman at the first Solvay Conference.", "Partida": "Game", "Partida de demostración": "Demo game", "Partida de demostración: mazo de Feynman, meta # y cartas en orden fijo.": "Demo game: Feynman deck, goal # and cards in a fixed order.", "Partida de demostración: orden de cartas fijo para presentar.": "Demo game: fixed card order for presenting.", "Partida en curso": "Game in progress", "Partida para # jugadores: J# @ · J# @ · J# @.": "Game for # players: P# @ · P# @ · P# @.", "Partida para # jugadores: J# @ · J# @.": "Game for # players: P# @ · P# @.", "Pasa el cursor sobre cualquier carta para verla en detalle": "Hover over any card to see it in detail", "Pasa el cursor sobre cualquier carta: a la derecha verás su texto y el hecho histórico que representa.": "Hover over any card: on the right you will see its text and the historical fact it represents.", "Paso # de #": "Step # of #", "Physics Today, \"A look inside Feynman’s calculus notebook\"; Britannica": "Physics Today, \"A look inside Feynman's calculus notebook\"; Britannica", "Pierdes": "You lose", "Premio Nobel: añades @ a tu mano.": "Nobel Prize: you add @ to your hand.", "Preparación del científico": "Scientist preparation", "Presentación": "Presentation", "Primer turno: las cartas que brillan se pueden jugar ahora. Haz clic en una.": "First turn: glowing cards can be played now. Click one.", "Puedes destruir esta carta y otra carta que controles para eliminar hasta # Amenazas secundarias en juego, sin generar sus efectos de eliminación habituales, y sumar # puntos de Investigación por cada una.": "You may destroy this card and another card you control to eliminate up to # secondary Threats in play, without triggering their usual elimination effects, and gain # Research points for each one.", "Pulsa para comenzar": "Press to start", "Página #": "Page #", "RESISTENCIA · MÁX. #": "RESISTANCE · MAX. #", "Radiación controlada": "Controlled Radiation", "Radiación controlada — Una vez por turno, cuando @ reciba daño o una carta de Amenaza aumente la Crisis Global, puedes: reducir el daño recibido en #, reducir el aumento de la Crisis en # o robar # carta.": "Controlled Radiation — Once per turn, when @ takes damage or a Threat card raises Global Crisis, you may: reduce the damage taken by #, reduce the Crisis increase by # or draw # card.", "Reacciona J# · @: @ — daño a todo el equipo": "P# reacts · @: @ — damage to the whole team", "Reacciona J# · @: Ingenio extravagante (la Crisis superó #)": "P# reacts · @: Extravagant Ingenuity (Crisis exceeded #)", "Reacciona J# · @: Radiación controlada": "P# reacts · @: Controlled Radiation", "Reacciona J# · @: Voluntad del caos (la Crisis subió #)": "P# reacts · @: Will of Chaos (Crisis rose by #)", "Recibe # puntos de energía adicional.": "Receive # additional energy points.", "Recibes # punto de energía adicional cada turno.": "You receive # additional energy point each turn.", "Recibió el Premio Nobel de Física de # junto a Julian Schwinger y Shin’ichirō Tomonaga por su trabajo en electrodinámica cuántica.": "He received the # Nobel Prize in Physics together with Julian Schwinger and Shin'ichirō Tomonaga for his work on quantum electrodynamics.", "Recibió el Premio Nobel de Física de # junto a Pierre Curie y Henri Becquerel. Fue la primera mujer en recibir un Nobel.": "She received the # Nobel Prize in Physics together with Pierre Curie and Henri Becquerel. She was the first woman to win a Nobel Prize.", "Recibió el Premio Nobel de Química de # por el descubrimiento del radio y el polonio, el aislamiento del radio y el estudio de sus compuestos.": "She received the # Nobel Prize in Chemistry for the discovery of radium and polonium, the isolation of radium and the study of its compounds.", "Recuperas tu Energía y tus Aliados quedan listos. No tienes que hacer nada.": "You recover your Energy and your Allies get ready. You don't need to do anything.", "Recuperas tu Energía.": "You recover your Energy.", "Reduce a la mitad la vida de # Amenaza secundaria en juego (truncando a la unidad). Además, si la Crisis Global es mayor a #: Roba # carta.": "Halve the life of # secondary Threat in play (rounding down). Also, if Global Crisis is greater than #: Draw # card.", "Reduce en # el coste de energía de la próxima carta que juegues. Roba # carta.": "Reduce the energy cost of the next card you play by #. Draw # card.", "Reducir el daño en # (recibes #)": "Reduce the damage by # (you take #)", "Reducir ese aumento en #": "Reduce that increase by #", "Registro de la partida": "Game log", "Registro de la partida para copiar": "Game log to copy", "Reiniciar": "Restart", "Reparte hasta # de curación: primero tu científico, luego tus Aliados.": "Distribute up to # healing: first your scientist, then your Allies.", "Representa el método científico como base de toda investigación.": "Represents the scientific method as the basis of all research.", "Representa el método científico: medir, comprobar y repetir antes de aceptar un resultado.": "Represents the scientific method: measure, check and repeat before accepting a result.", "Representa un acontecimiento del contexto de la pandemia, no un hecho de la vida del científico.": "Represents an event in the context of the pandemic, not a fact from the scientist's life.", "Representa un obstáculo del contexto de la pandemia, no un hecho de la vida del científico.": "Represents an obstacle in the context of the pandemic, not a fact from the scientist's life.", "Requiere #+ permanentes. Repite hasta N veces (N = permanentes): Crisis -# o Investigación +#. Se retira del juego.": "Requires #+ permanents. Repeat up to N times (N = permanents): Crisis -# or Research +#. Removed from the game.", "Requiere el tablero lleno (# permanentes). Uso único. Reduce la Crisis Global en #. Todos los científicos recuperan # de vida y roban # carta.": "Requires a full board (# permanents). Single use. Reduce Global Crisis by #. All scientists recover # life and draw # card.", "Resistencia biológica": "Biological resistance", "Resolviendo la fase…": "Resolving the phase…", "Resumen de la partida": "Game summary", "Retiradas": "Removed", "Retiradas del juego": "Removed from the game", "Revela de inmediato otro Encuentro.": "Immediately reveal another Encounter.", "Revela la primera Amenaza del mazo y ponla en juego. Si ya hay # en juego: Crisis +#.": "Reveal the top Threat of the deck and put it into play. If there are already # in play: Crisis +#.", "Revelados": "Revealed", "Richard Feynman — Midrange": "Richard Feynman — Midrange", "Richard P. Feynman (#–#), físico teórico estadounidense. Reformuló la electrodinámica cuántica, inventó los diagramas que llevan su nombre y fue un divulgador excepcional.": "Richard P. Feynman (#–#), American theoretical physicist. He reformulated quantum electrodynamics, invented the diagrams that bear his name and was an exceptional science communicator.", "Ritmo de las animaciones": "Animation speed", "Roba # cartas.": "Draw # cards.", "Roba # cartas. Si la Crisis es # o menos, además +# de Investigación.": "Draw # cards. If Crisis is # or less, also +# Research.", "Roba cartas hasta tener en Mano cartas iguales a la Comunicación de tu Científico. Luego, baraja # cartas de tu Mano a tu Mazo. Además, si la Crisis Global es mayor a #: roba # carta.": "Draw cards until the cards in your Hand equal your Scientist's Communication. Then shuffle # cards from your Hand into your Deck. Also, if Global Crisis is greater than #: draw # card.", "Roba dos cartas del mazo.": "Draw two cards from the deck.", "Robar # carta": "Draw # card", "Robar # carta (recibes #)": "Draw # card (you take #)", "Robas # carta y descartas hasta tu límite de mano, que es igual a tu Comunicación.": "You draw # card and discard down to your hand limit, which equals your Communication.", "Robas # carta(s) (@).": "You draw # card(s) (@).", "Robas # carta(s) (Fase Final · J# @).": "You draw # card(s) (End Phase · P# @).", "Robas # carta(s) (Fase Final).": "You draw # card(s) (End Phase).", "Robas # carta(s) (Radiación controlada).": "You draw # card(s) (Controlled Radiation).", "Robas # cartas iniciales (Comunicación #).": "You draw # starting cards (Communication #).", "Robas una carta y descartas hasta tu límite de mano.": "You draw a card and discard down to your hand limit.", "Robo y límite de mano": "Draw and hand limit", "Ronda": "Round", "Ronda #": "Round #", "Ronda # · El tablero juega primero": "Round # · The board plays first", "Ronda actual de la partida.": "Current round of the game.", "Rondas": "Rounds", "Rápido": "Fast", "SCIENCE": "SCIENCE", "Schrödinger": "Schrödinger", "Schrödinger, \"Die gegenwärtige Situation in der Quantenmechanik\" (#)": "Schrödinger, \"Die gegenwärtige Situation in der Quantenmechanik\" (#)", "Schrödinger, What Is Life? (#)": "Schrödinger, What Is Life? (#)", "Science": "Science", "Se acumulan turno a turno. Si el Mazo de Encuentros se agota, esta pila se rebaraja.": "They pile up turn by turn. If the Encounter Deck runs out, this pile is reshuffled.", "Se cumplió la condición (Richard Feynman recibió daño). ¿Buscar una carta \"Técnica de Feynman:\" o \"RF:\" en tu Mazo y añadirla a tu Mano?": "The condition was met (Richard Feynman took damage). Search your Deck for a \"Feynman Technique:\" or \"RF:\" card and add it to your Hand?", "Se cumplió la condición (la Crisis Global se volvió mayor a #). ¿Buscar una carta \"Técnica de Feynman:\" o \"RF:\" en tu Mazo y añadirla a tu Mano?": "The condition was met (Global Crisis became greater than #). Search your Deck for a \"Feynman Technique:\" or \"RF:\" card and add it to your Hand?", "Se juega en Acciones": "Played in Actions", "Se juega en Combate": "Played in Combat", "Se le atribuye un método de estudio: explicar un concepto con palabras simples, encontrar dónde falla la explicación y volver a la fuente hasta poder explicarlo con claridad.": "A study method is attributed to him: explain a concept in simple words, find where the explanation breaks down and go back to the source until you can explain it clearly.", "Se unió al @ para desarrollar la bomba atómica. Dudó al principio, pero aceptó ante el riesgo de que otro país la construyera primero.": "He joined the @ to develop the atomic bomb. He hesitated at first, but accepted given the risk that another country would build it first.", "Selecciona entre # y # carta(s). Haz clic para elegir o deseleccionar.": "Select between # and # card(s). Click to choose or deselect.", "Selección de científico": "Scientist selection", "Si el @ está en juego, recupera # de vida. Si no, Crisis +#.": "If the @ is in play, it recovers # life. If not, Crisis +#.", "Si tu Comunicación es menor que #, los Eventos cuestan # Energía más.": "If your Communication is less than #, Events cost # more Energy.", "Siguiente": "Next", "Sin cinemáticas": "No cinematics", "Sin hecho histórico registrado": "No historical fact recorded", "Sin la Vacuna, recibe como máximo # de daño por ataque o Evento y recupera # de vida en cada Fase de Crisis.": "Without the Vaccine, it takes at most # damage per attack or Event and recovers # life in each Crisis Phase.", "Solitario": "Solo", "Solo la pueden atacar cartas con Intelecto # o más. Los Encuentros que reducen la Crisis la reducen # menos.": "Only cards with Intellect # or more can attack it. Encounters that reduce Crisis reduce it by # less.", "Solo puedes controlar # Aliado. Si tienes #, el último vuelve a tu mano.": "You can only control # Ally. If you have #, the last one returns to your hand.", "Solo puedes jugar # carta de Apoyo o Mejora por turno.": "You can only play # Support or Upgrade card per turn.", "Solo se puede atacar con Comunicación # o más. Los Eventos sí la dañan.": "It can only be attacked with Communication # or more. Events do damage it.", "Solo su dueño": "Owner only", "Su ecuación (#) es la fórmula fundamental de la mecánica cuántica no relativista.": "His equation (#) is the fundamental formula of non-relativistic quantum mechanics.", "Su hija @ recibió el Premio Nobel de Química de #, junto a Frédéric Joliot, por descubrir la radiactividad artificial.": "Her daughter @ received the # Nobel Prize in Chemistry, together with Frédéric Joliot, for discovering artificial radioactivity.", "Su trabajo principal fue corregir la electrodinámica cuántica (QED), la teoría de la interacción entre la luz y las partículas cargadas como electrones y positrones.": "His main work was correcting quantum electrodynamics (QED), the theory of the interaction between light and charged particles such as electrons and positrons.", "Su trabajo sentó las bases de la física nuclear y de la radioterapia; el @ sigue investigando el cáncer.": "Her work laid the foundations of nuclear physics and radiotherapy; the @ still does cancer research.", "Sube al atacar Amenazas secundarias. Al llegar a la meta se completa el Proyecto.": "Rises when attacking secondary Threats. When it reaches the goal, the Project is complete.", "Sube cada vez que atacas una Amenaza secundaria. Al llegar a la meta completas el Proyecto y ya puedes atacar a la Amenaza Principal.": "It rises each time you attack a secondary Threat. When it reaches the goal you complete the Project and can attack the Main Threat.", "Sube el PDF de un mazo de científico. Se leerá cada carta: ilustración, nombre, tipo, coste y efecto.": "Upload a scientist deck PDF. Each card will be read: illustration, name, type, cost and effect.", "Sube en cada Fase de Crisis. A # se pierde la partida.": "It rises in each Crisis Phase. At # the game is lost.", "Sube la Crisis y aparecen una Amenaza y un Encuentro.": "Crisis rises and a Threat and an Encounter appear.", "Sus cuadernos de laboratorio siguen siendo radiactivos y se conservan con protección especial en la Biblioteca Nacional de Francia.": "Her laboratory notebooks are still radioactive and are kept under special protection at the National Library of France.", "Sus investigaciones con Pierre comenzaron en la Escuela Municipal de Física y Química Industriales de París (ESPCI).": "Her research with Pierre began at the Municipal School of Industrial Physics and Chemistry of Paris (ESPCI).", "Sí": "Yes", "TXT": "TXT", "Tablero": "Board", "Tamaño de mazos": "Deck size", "Tenía un don para explicar ciencia muy especializada a públicos amplios, como cuando explicó la elasticidad de las bandas de caucho con moléculas en movimiento.": "He had a gift for explaining highly specialized science to broad audiences, as when he explained the elasticity of rubber bands with molecules in motion.", "Terminar turno ▶": "End turn ▶", "The Feynman Lectures on Physics (@)": "The Feynman Lectures on Physics (@)", "Tocaba los bongós con pasión y los llevó consigo a Brasil, donde tocó con músicos de samba.": "He played the bongos with passion and took them with him to Brazil, where he played with samba musicians.", "Tocar para cancelar el ataque": "Tap to cancel the attack", "Todos juegan en este mismo equipo, por turnos.": "Everyone plays on the same team, taking turns.", "Trabajó en estrecha colaboración con Pierre Curie y, más tarde, con el equipo de su laboratorio.": "She worked closely with Pierre Curie and, later, with her laboratory team.", "Tras dejar Alemania en # llegó a la Universidad de Oxford, donde obtuvo respaldo para continuar su investigación.": "After leaving Germany in # he went to the University of Oxford, where he obtained support to continue his research.", "Tres científicos, la mesa completa.": "Three scientists, a full table.", "Tráiler": "Trailer", "Tráiler: haz clic para jugar": "Trailer: click to play", "Tu Comunicación es # menor. En Acciones puedes descartar # cartas para eliminarla.": "Your Communication is # lower. During Actions you may discard # cards to eliminate it.", "Tu Mazo": "Your Deck", "Tu mano y acciones": "Your hand and actions", "Tu mano ·": "Your hand ·", "Tu tablero": "Your board", "Tu turno de decidir: haz clic en una carta iluminada de tu mano para jugarla y usa las habilidades de tus permanentes. Cuando termines, pulsa «Ir a Combate».": "Your turn to decide: click a highlighted card in your hand to play it and use the abilities of your permanents. When you are done, press «Go to Combat».", "Turno de": "Turn of", "Tus zonas · Permanentes": "Your zones · Permanents", "Un Aliado que controles queda agotado.": "An Ally you control becomes exhausted.", "Un Apoyo que controles vuelve a tu mano.": "A Support you control returns to your hand.", "Un Científico recupera hasta # de vida.": "A Scientist recovers up to # life.", "Un científico contra el escenario.": "One scientist against the scenario.", "Un colaborador real. Ataca junto a ti y tiene una habilidad propia.": "A real collaborator. They attack alongside you and have their own ability.", "Un descubrimiento, premio o episodio. Hace su efecto y se descarta.": "A discovery, prize or episode. It resolves its effect and is discarded.", "Un juego cooperativo contra la Crisis": "A cooperative game against the Crisis", "Un rasgo o técnica que modifica a tu científico mientras esté en juego.": "A trait or technique that modifies your scientist while it is in play.", "Una institución o laboratorio que se queda en juego y te ayuda cada turno.": "An institution or laboratory that stays in play and helps you every turn.", "Una vez por ronda, cuando un científico juegue # carta, roba # carta.": "Once per round, when a scientist plays # card, draw # card.", "Una vez por ronda: puedes destruir una carta que controles para reducir la Crisis Global en # punto y robar # carta.": "Once per round: you may destroy a card you control to reduce Global Crisis by # point and draw # card.", "Una vez por turno, disminuye en # punto la Crisis Global y recupera # punto de vida.": "Once per turn, reduce Global Crisis by # point and recover # life point.", "Una vez por turno, reduce # puntos de la Crisis Global.": "Once per turn, reduce Global Crisis by # points.", "Una vez por turno, roba una carta extra.": "Once per turn, draw an extra card.", "Una vez por turno, tira una moneda: cara recibe # de energía, sello recibe # de energía.": "Once per turn, flip a coin: heads gives # energy, tails gives # energy.", "Una vez por turno: un Científico puede ganar # punto de investigación o ganar # de vida.": "Once per turn: a Scientist may gain # research point or gain # life.", "Vacuna lista": "Vaccine ready", "Vacuna lista · @ erradicado": "Vaccine ready · @ eradicated", "Ver J#": "View P#", "Ver campo": "View field", "Ver el campo de @": "View @'s field", "Ver la carta de misión": "View the mission card", "Ver resumen": "View summary", "Victoria": "Victory", "Vida": "Life", "Vida #/# · Energía # · Intelecto # · Comunicación # · Mano # · Mazo # · Cementerio #": "Life #/# · Energy # · Intellect # · Communication # · Hand # · Deck # · Graveyard #", "Vida #/# · Energía # · Intelecto # · Comunicación # · Mano # · Mazo # · Cementerio #. Solo lectura: sus cartas se usan en su turno.": "Life #/# · Energy # · Intellect # · Communication # · Hand # · Deck # · Graveyard #. Read only: their cards are used on their turn.", "Vida de tu científico: si llega a #, pierdes la partida.": "Your scientist's life: if it reaches #, you lose the game.", "Vida final": "Final life", "Vida ya al máximo (@).": "Life already at maximum (@).", "Voluntad del caos": "Will of Chaos", "Voluntad del caos — Si recibe daño, o si la Crisis Global sube # o más puntos de golpe, tira una moneda: cara inflige # de daño a la Amenaza de la izquierda, sello # de daño a la de la derecha, y de canto (# en #) ataca a las dos.": "Will of Chaos — If he takes damage, or if Global Crisis rises # or more points at once, flip a coin: heads deals # damage to the Threat on the left, tails # damage to the one on the right, and on its edge (# in #) it hits both.", "Volver a una partida normal": "Return to a normal game", "Zona de mejoras llena — elige cuál reemplazar (irá al Cementerio)": "Upgrade zone full — choose which to replace (it goes to the Graveyard)", "clic para saltar": "click to skip", "elige su mazo · # de #": "chooses a deck · # of #", "en cada turno del tablero. Todos comparten Crisis, Investigación y Amenazas; las Amenazas y Encuentros de cada turno del tablero afectan al científico que juega a continuación. Un científico sin vida queda fuera de combate y pierde sus turnos; el equipo solo pierde por vida si caen": "on each board turn. Everyone shares Crisis, Research and Threats; the Threats and Encounters of each board turn affect the scientist who plays next. A scientist with no life is knocked out and loses their turns; the team only loses by life if", "of": "of", "si completas el Proyecto (llevas la Investigación hasta la meta) y eliminas la Amenaza Principal.": "if you complete the Project (bring Research to the goal) and eliminate the Main Threat.", "si la Crisis Global llega a # o tu científico se queda sin Vida (en equipo: solo si caen todos los científicos).": "if Global Crisis reaches # or your scientist runs out of Life (in a team: only if all scientists fall).", "sigue": "next", "sin Amenaza": "no Threat", "sin Encuentro": "no Encounter", "todos": "all fall", "vacío": "empty", "x": "x", "¡Activación!": "Activation!", "¡Equipo listo!": "Team ready!", "¡Ingenio extravagante!": "Extravagant Ingenuity!", "¡Radiación controlada!": "Controlled Radiation!", "¡TRES CARAS!": "THREE HEADS!", "¡VICTORIA! Amenaza Principal eliminada y Proyecto completado.": "VICTORY! Main Threat eliminated and Project completed.", "¡Victoria!": "Victory!", "¡Voluntad del caos!": "Will of Chaos!", "¿Activar \"@\" (coste #)? Se resolverá durante tu próximo ataque de este turno.": "Activate \"@\" (cost #)? It will resolve during your next attack this turn.", "¿Cuántos científicos?": "How many scientists?", "¿Presentando en la feria? La partida de demostración usa un mazo y un orden de cartas fijos para que la demostración sea corta y siempre igual.": "Presenting at the fair? The demo game uses a fixed deck and card order so the demonstration is short and always the same.", "¿Qué científico recupera hasta # de vida?": "Which scientist recovers up to # life?", "← Cambiar": "← Change", "← Deshacer última elección": "← Undo last choice", "← Volver": "← Back", "← → para elegir · Enter para confirmar": "← → to choose · Enter to confirm", "← → para elegir · Enter para confirmar · Esc para volver": "← → to choose · Enter to confirm · Esc to go back", "→ # de daño a @ (@) · #/#": "→ # damage to @ (@) · #/#", "→ # de daño a @ (Ataque de @) · #/#": "→ # damage to @ (@'s attack) · #/#", "→ # de daño a @ (Voluntad del caos) · #/#": "→ # damage to @ (Will of Chaos) · #/#", "↶ Cancelar ataque": "↶ Cancel attack", "↶ Cancelar habilidad": "↶ Cancel ability", "↶ Cancelar jugada": "↶ Cancel play", "↺ @ es reemplazada y va al Cementerio.": "↺ @ is replaced and goes to the Graveyard.", "↺ REEMPLAZA": "↺ REPLACES", "−# ENERGÍA": "−# ENERGY", "−# VIDA": "−# LIFE", "── FASE DE ACCIONES ──": "── ACTION PHASE ──", "── FASE DE COMBATE ──": "── COMBAT PHASE ──", "── FASE DE INICIO ──": "── START PHASE ──", "── FASE FINAL ──": "── END PHASE ──", "──── RONDA # · FASE DE CRISIS ────": "──── ROUND # · CRISIS PHASE ────", "════ TURNO DEL JUGADOR # · @ ════": "════ PLAYER # TURN · @ ════", "▲ CRISIS +#": "▲ CRISIS +#", "▲ Crisis +# (@ (# Amenazas)) → #": "▲ Crisis +# (@ (# Threats)) → #", "▲ Crisis +# (@ (persistente)) → #": "▲ Crisis +# (@ (persistent)) → #", "▲ Crisis +# (@) → #": "▲ Crisis +# (@) → #", "▲ Crisis +# (Fase de Crisis (# científico)) → #": "▲ Crisis +# (Crisis Phase (# scientist)) → #", "▲ Crisis +# (Fase de Crisis (# científicos)) → #": "▲ Crisis +# (Crisis Phase (# scientists)) → #", "▶ Ataque de @ (# de daño) — elige objetivo — haz clic en una Amenaza.": "▶ @'s attack (# damage) — choose a target — click a Threat.", "▶ Ataque de @ (# de daño) — elige objetivo — haz clic en una Amenaza. · Esc, clic derecho o tocar de nuevo al atacante para cancelar.": "▶ @'s attack (# damage) — choose a target — click a Threat. · Esc, right-click or tap the attacker again to cancel.", "▶ Juegas @ (# energía). Energía restante: #": "▶ You play @ (# Energy). Energy left: #", "▼ CRISIS −#": "▼ CRISIS −#", "▼ Crisis -# (@ (con Apoyo)) → #": "▼ Crisis -# (@ (with Support)) → #", "▼ Crisis -# (@) → #": "▼ Crisis -# (@) → #", "▼ Crisis -# (Campaña de prevención) → #": "▼ Crisis -# (Prevention campaign) → #", "▼ Crisis -# (Protocolo de Contención) → #": "▼ Crisis -# (Containment Protocol) → #", "▼ Crisis -# (Radiación controlada) → #": "▼ Crisis -# (Controlled Radiation) → #", "◆ ENCUENTRO: @ — +# de Investigación. Si la Vacuna ya está lista, el @ pierde # de vida.": "◆ ENCOUNTER: @ — +# Research. If the Vaccine is already ready, the @ loses # life.", "◆ ENCUENTRO: @ — Cada científico y cada Aliado en juego reciben # de daño.": "◆ ENCOUNTER: @ — Each scientist and each Ally in play takes # damage.", "◆ ENCUENTRO: @ — Crisis +#. Si hay # Amenazas en juego, Crisis +# adicional.": "◆ ENCOUNTER: @ — Crisis +#. If there are # Threats in play, an additional Crisis +#.", "◆ ENCUENTRO: @ — Crisis −#. Hasta la próxima ronda, el primer aumento de Crisis por una Amenaza secundaria se reduce en #.": "◆ ENCOUNTER: @ — Crisis −#. Until the next round, the first Crisis increase from a secondary Threat is reduced by #.", "◆ ENCUENTRO: @ — Crisis −#. Si controlas al menos un Apoyo, Crisis −# adicional.": "◆ ENCOUNTER: @ — Crisis −#. If you control at least one Support, an additional Crisis −#.", "◆ ENCUENTRO: @ — Este turno tienes # Energías extra (solo # si la Crisis es mayor a #).": "◆ ENCOUNTER: @ — This turn you have # extra Energy (only # if Crisis is greater than #).", "◆ ENCUENTRO: @ — Reparte hasta # de curación: primero tu científico, luego tus Aliados.": "◆ ENCOUNTER: @ — Distribute up to # healing: first your scientist, then your Allies.", "◆ ENCUENTRO: @ — Revela la primera Amenaza del mazo y ponla en juego. Si ya hay # en juego: Crisis +#.": "◆ ENCOUNTER: @ — Reveal the top Threat of the deck and put it into play. If there are already # in play: Crisis +#.", "◆ ENCUENTRO: @ — Roba # cartas. Si la Crisis es # o menos, además +# de Investigación.": "◆ ENCOUNTER: @ — Draw # cards. If Crisis is # or less, also +# Research.", "◆ ENCUENTRO: @ — Si el @ está en juego, recupera # de vida. Si no, Crisis +#.": "◆ ENCOUNTER: @ — If the @ is in play, it recovers # life. If not, Crisis +#.", "★ VACUNA LISTA — Proyecto Científico completado: el @ pierde su resistencia biológica. Crisis -#.": "★ VACCINE READY — Scientific Project completed: the @ loses its biological resistance. Crisis -#.", "☠ @ ELIMINADA.": "☠ @ ELIMINATED.", "☠ @ cae (@).": "☠ @ falls (@).", "☠ @ sale del juego (@).": "☠ @ leaves play (@).", "☢ Radiación controlada": "☢ Controlled Radiation", "☢ Radiación controlada: el daño se reduce en #.": "☢ Controlled Radiation: the damage is reduced by #.", "☢ Radiación controlada: robas # carta.": "☢ Controlled Radiation: you draw # card.", "♥ #/# · Mano # · Perm. #": "♥ #/# · Hand # · Perm. #", "♥ Recuperas # de vida (@) → #": "♥ You recover # life (@) → #", "♥ Recuperas # de vida (El placer de descubrir) → #": "♥ You recover # life (The Pleasure of Finding Things Out) → #", "⚔ @ ataca a @: # de daño.": "⚔ @ attacks @: # damage.", "⚛ Voluntad del caos → # de daño a @ (derecha).": "⚛ Will of Chaos → # damage to @ (right).", "⚛ Voluntad del caos → # de daño a @ (izquierda).": "⚛ Will of Chaos → # damage to @ (left).", "⚠ Se revela AMENAZA: @ (Vida #)": "⚠ THREAT revealed: @ (Life #)", "⚡ @: +# de Energía este turno.": "⚡ @: +# Energy this turn.", "⚡ Reacción fuera de turno · J# @: @ — daño a todo el equipo": "⚡ Off-turn reaction · P# @: @ — damage to the whole team", "⚡ Reacción fuera de turno · J# @: Ingenio extravagante (la Crisis superó #)": "⚡ Off-turn reaction · P# @: Extravagant Ingenuity (Crisis exceeded #)", "⚡ Reacción fuera de turno · J# @: Radiación controlada": "⚡ Off-turn reaction · P# @: Controlled Radiation", "⚡ Reacción fuera de turno · J# @: Voluntad del caos (la Crisis subió #)": "⚡ Off-turn reaction · P# @: Will of Chaos (Crisis rose by #)", "⚡ Reacción · J# @: Radiación controlada": "⚡ Reaction · P# @: Controlled Radiation", "✋ @ cancela el Encuentro «@» (−# Energía).": "✋ @ cancels the Encounter «@» (−# Energy).", "✖ @ recibe # de daño (@).": "✖ @ takes # damage (@).", "✖ Recibes # de daño (@) → Vida #": "✖ You take # damage (@) → Life #", "✚ INVEST. +#": "✚ RESEARCH +#", "✚ Investigación +# (@) → #/#": "✚ Research +# (@) → #/#", "✚ Investigación +# (Ataque de @) → #/#": "✚ Research +# (@'s attack) → #/#", "✚ Investigación +# (Daño por efecto: @) → #/#": "✚ Research +# (Effect damage: @) → #/#", "✚ Investigación +# (Daño por efecto: Voluntad del caos) → #/#": "✚ Research +# (Effect damage: Will of Chaos) → #/#", "✦ @: elegirás el resultado de tu siguiente lanzamiento de moneda.": "✦ @: you will choose the result of your next coin flip.", "✦ Ingenio extravagante": "✦ Extravagant Ingenuity", "✦ Ingenio extravagante: @ busca @.": "✦ Extravagant Ingenuity: @ searches for @.", "⟡ La Crisis se vuelve mayor a # — Ingenio extravagante habilitado para buscar.": "⟡ Crisis becomes greater than # — Extravagant Ingenuity can now search.", "🧬 Resistencia biológica: @ solo recibe # de daño sin la Vacuna.": "🧬 Biological resistance: @ only takes # damage without the Vaccine.", "🧬 Resistencia biológica: el @ recupera # de vida.": "🧬 Biological resistance: the @ recovers # life.", "🪙 @: SELLO": "🪙 @: TAILS", "🪙 Voluntad del caos [daño recibido]: CARA": "🪙 Will of Chaos [damage taken]: HEADS", "🪙 Voluntad del caos [daño recibido]: SELLO": "🪙 Will of Chaos [damage taken]: TAILS", "🪙 Voluntad del caos [la Crisis subió # puntos · fuera de turno]: CARA": "🪙 Will of Chaos [Crisis rose # points · off turn]: HEADS", "🪙 Voluntad del caos [la Crisis subió # puntos · fuera de turno]: SELLO": "🪙 Will of Chaos [Crisis rose # points · off turn]: TAILS", "🪙 Voluntad del caos [la Crisis subió # puntos]: CARA": "🪙 Will of Chaos [Crisis rose # points]: HEADS", "🪙 Voluntad del caos [la Crisis subió # puntos]: SELLO": "🪙 Will of Chaos [Crisis rose # points]: TAILS", "Ataque de @": "@'s attack", "Daño por efecto: @": "Effect damage: @", "Daño por efecto: Voluntad del caos": "Effect damage: Will of Chaos", "@ (bono)": "@ (bonus)", "@ (persistente)": "@ (persistent)", "@ (con Apoyo)": "@ (with Support)", "@ (# Amenazas)": "@ (# Threats)", "Fase Final · J# @": "End Phase · P# @", "Fase de Crisis (# científico)": "Crisis Phase (# scientist)", "Fase de Crisis (# científicos)": "Crisis Phase (# scientists)", "Campaña de prevención": "Prevention campaign", "Protocolo de Contención": "Containment Protocol", "Técnica: Enseñanza": "Technique: Teaching", "Esc, clic derecho o tocar de nuevo al atacante para cancelar.": "Esc, right-click or tap the attacker again to cancel.", "▶ Elige la Amenaza objetivo.": "▶ Choose the target Threat.", "CHAMPIONS OF SCIENCE — Registro de partida (Edición Expociencias)": "CHAMPIONS OF SCIENCE — Game log (Expociencias Edition)", "Idioma": "Language", "Idioma · Language": "Language · Idioma", "Español": "Español", "English": "English", "Elige el idioma del juego": "Choose the game language", "Puedes cambiarlo cuando quieras desde la cabecera o la configuración.": "You can change it at any time from the header or the settings.", "Textos, efectos, paneles y registro. Las ilustraciones de las cartas no cambian.": "Texts, effects, panels and log. Card illustrations do not change.", "Prueba": "Test", "Cancelar": "Cancel", "Usar": "Use", "Te afecta": "Affects you", "Fuera de combate": "Knocked out", "tú": "you", "Elige el científico:": "Choose the scientist:", "Elige el resultado de este lanzamiento:": "Choose the result of this flip:", "Cara": "Heads", "Sello": "Tails", "CARA": "HEADS", "SELLO": "TAILS", "¡DE CANTO!": "ON ITS EDGE!", "De canto": "On its edge", "MIXTO": "MIXED", "¡CARAS IGUALES!": "MATCHING FACES!", "Lanzamiento": "Coin flip", "Resultado": "Result", "En curso": "In progress", "Sin Amenaza": "No Threat", "Responde": "Respond", "Cambiar idioma": "Change language", "Idioma del juego": "Game language", "+# del equipo": "+# from the team", "Baraja hasta # cartas del Cementerio al Mazo": "Shuffle up to # cards from the Graveyard into the Deck", "Barajas # carta(s) al Mazo.": "You shuffle # card(s) into the Deck.", "Radiación controlada: no se usa esta vez.": "Controlled Radiation: not used this time.", "Ver los Apoyos de tus compañeros": "View your teammates' Supports", "El Cementerio está vacío.": "The Graveyard is empty.", "+# Comunicación permanente (ahora #).": "+# permanent Communication (now #).", "+# Comunicación permanente para @ (ahora #).": "+# permanent Communication for @ (now #).", "@: @ no puede aumentar la Crisis.": "@: @ cannot raise the Crisis.", "@: @ no aumentará la Crisis hasta tu próximo turno.": "@: @ will not raise the Crisis until your next turn.", "@ recupera @ a tu mano.": "@ returns @ to your hand.", "Archivo guardado: @": "File saved: @", "@: @ es destruido.": "@: @ is destroyed.", "@: @ queda arriba; @ va al fondo.": "@: @ stays on top; @ goes to the bottom.", "@ termina: # cara(s) en total.": "@ ends: # heads in total.", "El ataque de @ se cancela.": "@'s attack is cancelled.", "@: @ queda agotado.": "@: @ is exhausted.", "@: @ vuelve a tu mano (solo puedes tener # Aliado).": "@: @ returns to your hand (you can only have # Ally).", "Gell-Mann: añades @ a tu mano; la otra vuelve al Mazo.": "Gell-Mann: you add @ to your hand; the other returns to the Deck.", "Incendio en Sala de Control contraataca a @.": "Control Room Fire counterattacks @.", "Incendio en Sala de Control contraataca.": "Control Room Fire counterattacks.", "@: tomas @; el resto va al fondo del mazo.": "@: you take @; the rest go to the bottom of the deck.", "@: robas # carta(s).": "@: you draw # card(s).", "@ vigila a J# · @.": "@ watches P# · @.", "@: descartas @ → +# de Intelecto este turno (ahora #).": "@: you discard @ → +# Intellect this turn (now #).", "@: pierdes # de Investigación → #/#": "@: you lose # Research → #/#", "@: @ tiene # de Intelecto (necesita #) — sin curación.": "@: @ has # Intellect (needs #) — no healing.", "@: @ queda en la cima del mazo.": "@: @ stays on top of the deck.", "@: # activación(es). Carta retirada del juego.": "@: # activation(s). Card removed from the game.", "@: se resolverá durante tu próximo ataque (# de daño a esa Amenaza, +# si la Crisis es mayor a #).": "@: it will resolve during your next attack (# damage to that Threat, +# if Crisis is greater than #).", "Necesitas haber gastado #+ energías este turno (llevas #).": "You need to have spent #+ Energy this turn (you have spent #).", "@: el @ recupera # de vida.": "@: the @ recovers # life.", "@: +# de energía (ahora #).": "@: +# Energy (now #).", "@: +# de Energía.": "@: +# Energy.", "@: se resolverá durante tu próximo ataque (# de daño directo a cada Amenaza en mesa, +# a la atacada si la Crisis es mayor a #).": "@: it will resolve during your next attack (# direct damage to each Threat on the table, +# to the attacked one if Crisis is greater than #).", "Resuelves manualmente el efecto de @.": "You resolve the effect of @ manually.", "@: @ vuelve a la mano de @.": "@: @ returns to @'s hand.", "@: @ vuelve a tu mano.": "@: @ returns to your hand.", "@: el Cementerio de J# está vacío.": "@: P#'s Graveyard is empty.", "Selecciona el texto y cópialo con Ctrl+C.": "Select the text and copy it with Ctrl+C.", "Turno de @ omitido: está fuera de combate.": "@'s turn skipped: knocked out.", "↶ Ataque cancelado: todo vuelve a como estaba.": "↶ Attack cancelled: everything is back as it was.", "↶ Habilidad cancelada: todo vuelve a como estaba.": "↶ Ability cancelled: everything is back as it was.", "↶ Jugada cancelada: todo vuelve a como estaba.": "↶ Play cancelled: everything is back as it was.", "⇄ @: # punto de daño se transfiere a @.": "⇄ @: # point of damage is transferred to @.", "⏳ @: se resolverá al inicio de tu próximo turno.": "⏳ @: it will resolve at the start of your next turn.", "⏳ Se resuelve @.": "⏳ Resolving @.", "◆ ENCUENTRO (@): @ — @": "◆ ENCOUNTER (@): @ — @", "★ Mazo importado desde PDF: # cartas · Científico: @.": "★ Deck imported from PDF: # cards · Scientist: @.", "★ Mazo importado desde PDF: # cartas.": "★ Deck imported from PDF: # cards.", "☠ @ cae por el contraataque.": "☠ @ falls to the counterattack.", "☠ @ cae por el daño transferido.": "☠ @ falls from the transferred damage.", "☠ @ ELIMINADA por el @ (tenía # de vida).": "☠ @ ELIMINATED by the @ (it had # life).", "☠ @ ELIMINADA por el polonio.": "☠ @ ELIMINATED by polonium.", "☠ @ eliminada por Manhattan (sin activar efectos).": "☠ @ eliminated by Manhattan (without triggering effects).", "☠ J# · @ queda FUERA DE COMBATE: pierde sus próximos turnos.": "☠ P# · @ is KNOCKED OUT: they lose their next turns.", "☢ @ (J# · @, fuera de turno) evita la derrota: el aumento de Crisis se reduce en #.": "☢ @ (P# · @, off turn) prevents defeat: the Crisis increase is reduced by #.", "♥ @ recupera # de vida.": "♥ @ recovers # life.", "♻ Mazo de Amenazas agotado: se rebaraja la pila de eliminadas (# cartas).": "♻ Threat Deck exhausted: the eliminated pile is reshuffled (# cards).", "♻ Mazo de Encuentros agotado: se rebarajan los revelados (# cartas).": "♻ Encounter Deck exhausted: the revealed ones are reshuffled (# cards).", "⚔ Pasas a Combate para atacar a @.": "⚔ You move to Combat to attack @.", "⚠ Se revela AMENAZA: @ (Vida #) — @": "⚠ THREAT revealed: @ (Life #) — @", "⚡ @: recibes # de energía.": "⚡ @: you receive # energy.", "⚡ @: +# de energía.": "⚡ @: +# energy.", "✋ @ (J# · @, fuera de turno) cancela el Encuentro «@» (−# Energía).": "✋ @ (P# · @, off turn) cancels the Encounter «@» (−# Energy).", "✦ Ingenio extravagante: buscas @.": "✦ Extravagant Ingenuity: you search for @.", "@ es una pasiva: su efecto se aplica solo.": "@ is passive: its effect applies on its own.", "@ se activa por sí solo cuando tu científico recibe daño.": "@ triggers on its own when your scientist takes damage.", "@ ya usó su efecto.": "@ has already used its effect.", "Descartas @.": "You discard @.", "Barajas # carta(s) al Mazo: @": "You shuffle # card(s) into the Deck: @", "(descuento de Ingenio extravagante aplicado)": "(Extravagant Ingenuity discount applied)", "Aún no se ha revelado ningún Encuentro.": "No Encounter has been revealed yet.", "Ataque cancelado: suelta sobre una Amenaza válida.": "Attack cancelled: drop it on a valid Threat.", "Baraja # cartas de tu Mano al Mazo": "Shuffle # cards from your Hand into the Deck", "Barajas # cartas al Mazo.": "You shuffle # cards into the Deck.", "Campaña de prevención: el aumento de Crisis se reduce en #.": "Prevention campaign: the Crisis increase is reduced by #.", "Caras distintas: la habilidad no se activa.": "Different faces: the ability does not trigger.", "Carta superior: @ (coste reducido a #). ¿Jugarla, o devolverla al Mazo?": "Top card: @ (cost reduced to #). Play it, or return it to the Deck?", "Cementerio vacío.": "Empty Graveyard.", "La Amenaza fue derrotada: ¿qué científico recupera # de vida?": "The Threat was defeated: which scientist recovers # life?", "Descarga cancelada.": "Download cancelled.", "Descarta # carta para ganar Intelecto": "Discard # card to gain Intellect", "Detener": "Stop", "Devuelves la carta a su lugar.": "You put the card back.", "Diagramas: reduce a la mitad la vida de una Amenaza secundaria": "Diagrams: halve the life of a secondary Threat", "Efecto no automatizado": "Effect not automated", "El ataque arrastrado ya no es posible.": "The dragged attack is no longer possible.", "El daño queda reducido a #.": "The damage is reduced to #.", "@: # de daño a una Amenaza": "@: # damage to a Threat", "El polonio solo elimina Amenazas secundarias.": "Polonium only eliminates secondary Threats.", "Elige un efecto:": "Choose an effect:", "Elige:": "Choose:", "Eliges el resultado de este lanzamiento:": "You choose the result of this flip:", "Elimina hasta # Amenazas secundarias": "Eliminate up to # secondary Threats", "Evento Legendario": "Legendary Event", "Gell-Mann: elige # para tu mano (la otra se baraja de vuelta al Mazo)": "Gell-Mann: choose # for your hand (the other is shuffled back into the Deck)", "Habilidad cancelada": "Ability cancelled", "Ingenio extravagante: la carta ya no está en el Mazo de Feynman.": "Extravagant Ingenuity: the card is no longer in Feynman's Deck.", "Ingenio extravagante: no quedan \"Técnica de Feynman:\" ni \"RF:\" en el Mazo.": "Extravagant Ingenuity: no \"Feynman Technique:\" or \"RF:\" cards left in the Deck.", "Investigación +#": "Research +#", "Jugada cancelada": "Play cancelled", "Ataque cancelado": "Attack cancelled", "Los Eventos de combate no resueltos se pierden al terminar el turno.": "Unresolved combat Events are lost at the end of the turn.", "@ ya usado este turno.": "@ already used this turn.", "@ ya usado esta ronda.": "@ already used this round.", "Manhattan requiere otra carta que controles.": "Manhattan requires another card you control.", "Manhattan: destruye otra carta que controles": "Manhattan: destroy another card you control", "@ destruida por Manhattan.": "@ destroyed by Manhattan.", "@ destruida por @.": "@ destroyed by @.", "Mazo cargado": "Deck loaded", "Mazo vacío.": "Empty deck.", "Mazo vacío: se baraja el Cementerio.": "Empty deck: the Graveyard is shuffled.", "No barajas ninguna carta.": "You do not shuffle any card.", "No controlas otra carta para destruir.": "You control no other card to destroy.", "No hay Amenazas secundarias en juego.": "There are no secondary Threats in play.", "No hay Amenazas secundarias.": "There are no secondary Threats.", "No hay cartas retiradas del juego.": "No cards have been removed from the game.", "No quedan Amenazas por revelar.": "No Threats left to reveal.", "Polonio: no hay Amenazas secundarias.": "Polonium: there are no secondary Threats.", "Registro copiado al portapapeles.": "Log copied to the clipboard.", "@: destruye una carta que controles": "@: destroy a card you control", "Se ignoraron cartas repetidas de un mismo tipo.": "Repeated cards of the same type were ignored.", "@: recupera # carta de tu Cementerio": "@: recover # card from your Graveyard", "@: tu Cementerio está vacío.": "@: your Graveyard is empty.", "Sin Aliados en el Cementerio.": "No Allies in the Graveyard.", "Sin Aliados en el Mazo.": "No Allies in the Deck.", "Sin cartas para descartar.": "No cards to discard.", "Sin efecto (# permanentes o sin Amenazas).": "No effect (# permanents or no Threats).", "Sin objetivos válidos.": "No valid targets.", "Sin objetivos válidos: solo se reduce la Crisis.": "No valid targets: only the Crisis is reduced.", "Un científico fuera de combate no recupera vida.": "A knocked-out scientist does not recover life.", "Ventana de Oportunidad anula el aumento de Crisis.": "Window of Opportunity cancels the Crisis increase.", "@ golpea a las dos Amenazas": "@ hits both Threats", "Voluntad del caos golpea a las dos Amenazas": "Will of Chaos hits both Threats", "Volviste a una partida normal.": "You returned to a normal game.", "Wheeler: recupera un Aliado": "Wheeler: recover an Ally", "Ya hay una descarga esperando tu confirmación.": "A download is already waiting for your confirmation.", "Ya tienes un descuento pendiente.": "You already have a pending discount.", "Ya tienes un lanzamiento fijado.": "You already have a fixed coin flip.", "Ya usaste esta rama esta ronda.": "You already used this option this round.", "Zona de aliados llena — elige cuál reemplazar (irá al Cementerio)": "Ally zone full — choose which to replace (it goes to the Graveyard)", "Zona de apoyos llena — elige cuál reemplazar (irá al Cementerio)": "Support zone full — choose which to replace (it goes to the Graveyard)", "¿Disminuir la Crisis Global en #?": "Reduce Global Crisis by #?", "¿Disminuir la Crisis Global en # (y # punto adicional)?": "Reduce Global Crisis by # (and # additional point)?", "¿Infligir # de daño a cada Amenaza en juego?": "Deal # damage to each Threat in play?", "¿Infligir # de daño a cada Amenaza en juego (y la Investigación gana # puntos)?": "Deal # damage to each Threat in play (and Research gains # points)?", "¿Recuperar una carta del Cementerio y ponerla en tu mano? Einstein queda agotado.": "Recover a card from the Graveyard and put it in your hand? Einstein becomes exhausted.", "☢ Radiación controlada evita la derrota: el aumento de Crisis se reduce en #.": "☢ Controlled Radiation prevents defeat: the Crisis increase is reduced by #.", "☢ Radiación controlada: el aumento de Crisis se reduce en #.": "☢ Controlled Radiation: the Crisis increase is reduced by #.", "✦ Ingenio extravagante: la SIGUIENTE carta que juegues este turno cuesta # menos.": "✦ Extravagant Ingenuity: the NEXT card you play this turn costs # less.", "Sabotaje Informático: @ queda agotado.": "Cyber Sabotage: @ is exhausted.", "Elige el científico: la primera vez por ronda que juegue una carta, robará #.": "Choose the scientist: the first time each round they play a card, they will draw #.", "¿Qué científico recupera # de vida? Si eliges a otro jugador, robas # carta.": "Which scientist recovers # life? If you choose another player, you draw # card.", "La Crisis es mayor a #: ¿qué científico gana # de vida?": "Crisis is greater than #: which scientist gains # life?", "La Crisis es mayor a #: ¿qué científico gana # de Comunicación permanente?": "Crisis is greater than #: which scientist gains # permanent Communication?", "¿Qué científico recupera # de vida?": "Which scientist recovers # life?", "@ jugó una carta. ¿@ roba # carta? (una vez por ronda)": "@ played a card. Does @ draw # card? (once per round)", "@: elige la carta que queda arriba de tu Mazo (la otra va al fondo)": "@: choose the card that stays on top of your Deck (the other goes to the bottom)", "📓 @: miras las # primeras cartas de tu Mazo.": "📓 @: you look at the top # cards of your Deck.", "@: elige la Amenaza secundaria que se elimina": "@: choose the secondary Threat to eliminate", "@: elige la Amenaza que no podrá aumentar la Crisis": "@: choose the Threat that will not be able to raise the Crisis", "@: @ recupera # carta de su Cementerio": "@: @ recovers # card from their Graveyard", "@: descarta # carta de tu mano": "@: discard # card from your hand", "¡LA MONEDA CAE DE CANTO! (# en #)": "THE COIN LANDS ON ITS EDGE! (# in #)", "resultado elegido por Dirac": "result chosen by Dirac", "elegida entre dos monedas": "chosen between two coins", "daño recibido": "damage taken", "@ se activa solo, al inicio de tu turno.": "@ triggers on its own, at the start of your turn.", "Reacciona J# · @: @": "P# reacts · @: @", "Language: English": "Language: English", "@: elige la Amenaza que recibe # de daño": "@: choose the Threat that takes # damage", "@: la Amenaza fue derrotada.": "@: the Threat was defeated.", "@: no hay Amenazas en juego.": "@: there are no Threats in play.", "@: elige la carta a recuperar": "@: choose the card to recover", "@ tiene # de Intelecto: ¿qué científico recupera # de vida?": "@ has # Intellect: which scientist recovers # life?", "@ (sin lanzar)": "@ (not flipped)", "Idioma: Español": "Idioma: Español", "El placer de descubrir: # de daño a una Amenaza": "The Pleasure of Finding Things Out: # damage to a Threat", "El placer de descubrir": "The Pleasure of Finding Things Out", "Primer Premio Nobel: +# de Energía.": "First Nobel Prize: +# Energy.", "Segundo Premio Nobel: recupera # carta de tu Cementerio": "Second Nobel Prize: recover # card from your Graveyard", "Segundo Premio Nobel: tu Cementerio está vacío.": "Second Nobel Prize: your Graveyard is empty.", "Segundo Premio Nobel: el Cementerio de J# está vacío.": "Second Nobel Prize: P#'s Graveyard is empty.", "Segundo Premio Nobel: @ vuelve a tu mano.": "Second Nobel Prize: @ returns to your hand.", "Segundo Premio Nobel: @ vuelve a la mano de @.": "Second Nobel Prize: @ returns to @'s hand.", "Segundo Premio Nobel: @ recupera # carta de su Cementerio": "Second Nobel Prize: @ recovers # card from their Graveyard", "Wheeler recupera @ a tu mano.": "Wheeler returns @ to your hand.", "Primer Premio Nobel": "First Nobel Prize", "Segundo Premio Nobel": "Second Nobel Prize", "Requiere # permanentes": "Requires # permanents", "Brote: # permanente por turno": "Outbreak: # permanent per turn", "Se activa sola ante un Encuentro": "Triggers on its own against an Encounter", "🛡 @ solo acepta ataques con Intelecto # o más: el ataque no tiene efecto.": "🛡 @ only accepts attacks with Intellect # or more: the attack has no effect.", "🛡 @ solo puede atacarse con Comunicación # o más: el ataque no tiene efecto.": "🛡 @ can only be attacked with Communication # or more: the attack has no effect.", "Neutralizada hasta el final de la ronda #": "Neutralized until the end of round #", "@ queda Neutralizada hasta el final de la ronda #.": "@ is Neutralized until the end of round #.", "@ está neutralizado: no aplica sus efectos esta ronda.": "@ is neutralized: its effects do not apply this round.", "NEUTRALIZADA": "NEUTRALIZED", "Volver a la partida": "Back to the game"};
+const I18N_NOM={"Bongós": "Bongos", "Resolver caja fuerte": "Safecracking", "Carnaval en Copacabana": "Carnival in Copacabana", "Estudio autodidacta": "Self-Taught Study", "Helio superfluido": "Superfluid Helium", "Modelo de partones": "Parton Model", "Investigación del Challenger": "Challenger Investigation", "Integral de camino": "Path Integral", "Prueba Trinity": "Trinity Test", "Electrodinámica cuántica": "Quantum Electrodynamics", "Diagramas de Feynman": "Feynman Diagrams", "Premio Nobel (1965)": "Nobel Prize (1965)", "Lecciones en Caltech": "Lectures at Caltech", "Técnica de Feynman: Cálculo": "Feynman Technique: Calculus", "Técnica de Feynman: Enseñanza": "Feynman Technique: Teaching", "Técnica de Feynman: Divulgación": "Feynman Technique: Outreach", "R.F.: \"Hay mucho espacio en el fondo\"": "R.F.: \"Plenty of Room at the Bottom\"", "R.F.: \"El placer de descubrir\"": "R.F.: \"The Pleasure of Finding Things Out\"", "R.F.: \"¿Está usted de broma, Sr. Feynman?\"": "R.F.: \"Surely You're Joking, Mr. Feynman!\"", "MIT": "MIT", "SLAC": "SLAC", "Cafetería Willard Straight Hall": "Willard Straight Hall Cafeteria", "Caltech": "Caltech", "Universidad de Princeton": "Princeton University", "Proyecto Manhattan": "Manhattan Project", "John Wheeler": "John Wheeler", "Hans Bethe": "Hans Bethe", "Murray Gell-Mann": "Murray Gell-Mann", "Método científico": "Scientific Method", "Inspiración en los Alpes": "Inspiration in the Alps", "La serie de cuatro artículos": "The Four-Paper Series", "Vida militar": "Military Life", "¿Qué es la vida?": "What Is Life?", "Ecuación de onda": "Wave Equation", "Éxodo a Oxford": "Exodus to Oxford", "Colapso de función de onda": "Wave Function Collapse", "Premio Nobel de física 1933": "1933 Nobel Prize in Physics", "Escape de Alemania": "Escape from Germany", "Superposición Cuántica": "Quantum Superposition", "Destino probabilístico": "Probabilistic Fate", "Gato de Schrödinger": "Schrödinger's Cat", "Resistencia cuántica": "Quantum Resistance", "Impacto Cromático": "Chromatic Impact", "Función de onda": "Wave Function", "Negentropía": "Negentropy", "Estados estacionarios": "Stationary States", "Universidad de Zúrich": "University of Zurich", "Instituto de Estudios Avanzados de Dublín": "Dublin Institute for Advanced Studies", "Laboratorio de física teórica": "Theoretical Physics Laboratory", "Equipo de inspiración cuántica": "Quantum Inspiration Team", "Red de colaboración científica": "Scientific Collaboration Network", "Ecuación de Schrödinger": "Schrödinger Equation", "Max Planck": "Max Planck", "Paul Dirac": "Paul Dirac", "Albert Einstein": "Albert Einstein", "Descubrimiento del Radio": "Discovery of Radium", "Descubrimiento del polonio": "Discovery of Polonium", "Primer Premio Nobel (1903)": "First Nobel Prize (1903)", "Segundo Premio Nobel (1911)": "Second Nobel Prize (1911)", "Rayos X en el Frente": "X-Rays at the Front", "Investigación incansable": "Tireless Research", "Conferencia científica": "Scientific Conference", "Aislamiento del Radio": "Isolation of Radium", "Teoría de la Radiactividad": "Theory of Radioactivity", "Legado de Marie Curie": "Legacy of Marie Curie", "Pionera de la Radiactividad": "Pioneer of Radioactivity", "Perseverancia": "Perseverance", "Investigación colaborativa": "Collaborative Research", "Laboratorio de Física y Química": "Physics and Chemistry Laboratory", "Instituto Curie": "Curie Institute", "Cuaderno de investigación": "Research Notebook", "Conferencias de Solvay": "Solvay Conferences", "Irène Joliot-Curie": "Irène Joliot-Curie", "Claudius Regaud": "Claudius Regaud", "Virus Desconocido": "Unknown Virus", "Desinformación Científica": "Scientific Misinformation", "Hospitales colapsados": "Overwhelmed Hospitals", "Escasez de insumos": "Supply Shortage", "Mutación viral": "Viral Mutation", "Movimiento antivacunas": "Anti-Vaccine Movement", "Saturación hospitalaria": "Hospital Overload", "Cadena de contagios": "Chain of Infection", "Investigación fraudulenta": "Fraudulent Research", "Escasez de personal": "Staff Shortage", "Crisis económica": "Economic Crisis", "Colapso logístico": "Logistics Collapse", "Brote comunitario": "Community Outbreak", "Saqueos": "Looting", "Nueva cepa": "New Strain", "Contagio masivo": "Mass Contagion", "Información falsa": "False Information", "Colapso sanitario": "Healthcare Collapse", "Brote localizado": "Localized Outbreak", "Donación internacional": "International Donation", "Publicación científica": "Scientific Publication", "Descubrimiento prometedor": "Promising Discovery", "Apoyo ciudadano": "Citizen Support", "Refuerzo del Personal Sanitario": "Healthcare Staff Reinforcement", "Campaña de prevención efectiva": "Effective Prevention Campaign", "Pandemia mundial": "Global Pandemic", "Richard Feynman \"Ofey\"": "Richard Feynman \"Ofey\"", "Erwin Schrödinger": "Erwin Schrödinger", "Marie Curie": "Marie Curie"};
+
+
+// =====================================================================
+// ======================= IDIOMA: ESPAÑOL / ENGLISH ====================
+// =====================================================================
+// El motor del juego trabaja siempre en español (registro interno, nombres, reglas).
+// En inglés, una capa de presentación traduce todo lo que llega a la pantalla:
+// textos, paneles, efectos de las cartas, hechos históricos, registro y exportaciones.
+// Las ilustraciones de las cartas no cambian; las caras generadas (Amenazas,
+// Encuentros, Misión) sí se redibujan traducidas.
+const I18N={lang:'es',cache:new Map(),obs:null,orig:new WeakMap()};
+const I18N_L='A-Za-zÁÉÍÓÚÜáéíóúüñÑ';
+const I18N_NOMBRES=Object.keys(I18N_NOM).sort(function(a,b){return b.length-a.length});
+const I18N_RE_NOM=new RegExp('(?<!['+I18N_L+'])('+I18N_NOMBRES.map(function(x){return x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}).join('|')+')(?!['+I18N_L+'])','g');
+function i18nEs(){return I18N.lang!=='en'}
+function trNorm(s){
+  const names=[],nums=[];
+  let k=s.replace(I18N_RE_NOM,function(m){names.push(m);return '@'});
+  k=k.replace(/\d+/g,function(m){nums.push(m);return '#'});
+  return {k:k,names:names,nums:nums};
+}
+function trLlenar(t,names,nums){
+  let i=0,j=0;
+  return t.replace(/[@#]/g,function(ch){
+    if(ch==='@'){const n=names[i++];return n===undefined?'@':(I18N_NOM[n]||n)}
+    const v=nums[j++];return v===undefined?'#':v;
+  });
+}
+// Reglas para textos compuestos que no están literalmente en el diccionario
+const I18N_REGLAS=[
+  [/^(▲|▼) Crisis ([+\-−]\d+) \((.+)\) → (\d+)$/,function(m){return m[1]+' Crisis '+m[2]+' ('+trCore(m[3])+') → '+m[4]}],
+  [/^✚ Investigación \+(\d+) \((.+)\) → (.+)$/,function(m){return '✚ Research +'+m[1]+' ('+trCore(m[2])+') → '+m[3]}],
+  [/^♥ Recuperas (\d+) de vida \((.+)\) → (\d+)$/,function(m){return '♥ You recover '+m[1]+' life ('+trCore(m[2])+') → '+m[3]}],
+  [/^✖ Recibes (\d+) de daño \((.+)\) → Vida (-?\d+)$/,function(m){return '✖ You take '+m[1]+' damage ('+trCore(m[2])+') → Life '+m[3]}],
+  [/^✖ (.+) recibe (\d+) de daño \((.+)\)\.$/,function(m){return '✖ '+trCore(m[1])+' takes '+m[2]+' damage ('+trCore(m[3])+').'}],
+  [/^→ (\d+) de daño a (.+) \((.+)\) · (.+)$/,function(m){return '→ '+m[1]+' damage to '+trCore(m[2])+' ('+trCore(m[3])+') · '+m[4]}],
+  [/^Robas (\d+) carta\(s\) \((.+)\)\.$/,function(m){return 'You draw '+m[1]+' card(s) ('+trCore(m[2])+').'}],
+  [/^Vida ya al máximo \((.+)\)\.$/,function(m){return 'Life already at maximum ('+trCore(m[1])+').'}],
+  [/^No recibes daño \((.+)\)\.$/,function(m){return 'You take no damage ('+trCore(m[1])+').'}],
+  [/^☠ (.+) (cae|sale del juego) \((.+)\)\.$/,function(m){return '☠ '+trCore(m[1])+(m[2]==='cae'?' falls (':' leaves play (')+trCore(m[3])+').'}],
+  [/^🪙 (.+): (CARA|SELLO)( — .+)?$/,function(m){return '🪙 '+trCore(m[1])+': '+(m[2]==='CARA'?'HEADS':'TAILS')+(m[3]?' — '+trCore(m[3].slice(3)):'')}],
+  [/^\[R(\d+) · ([^\]]+)\] (.*)$/,function(m){return '[R'+m[1]+' · '+trCore(m[2])+'] '+trCore(m[3])}],
+  [/^Fecha: (.*)$/,function(m){return 'Date: '+m[1].replace(/\s?p\.\s?m\./,' PM').replace(/\s?a\.\s?m\./,' AM')}],
+  [/^Científico: (.*) · Mazo: (.*)$/,function(m){return 'Scientist: '+trCore(m[1]).replace(/\bJ(\d)/g,'P$1')+' · Deck: '+trCore(m[2])}],
+  [/^Resultado: (.*) · Rondas: (.*) · Duración: (.*)$/,function(m){return 'Result: '+trCore(m[1])+' · Rounds: '+m[2]+' · Duration: '+trCore(m[3])}],
+  [/^Crisis final: (.*) \(máxima (\d+)\) · Investigación: (.*) · Proyecto completado: (.*)$/,function(m){return 'Final Crisis: '+m[1]+' (max '+m[2]+') · Research: '+m[3]+' · Project completed: '+trCore(m[4])}],
+  [/^Amenazas eliminadas: (.*) · Cartas jugadas: (.*) · Daño infligido: (.*) · Vida final: (.*)$/,function(m){return 'Threats eliminated: '+m[1]+' · Cards played: '+m[2]+' · Damage dealt: '+m[3]+' · Final life: '+trCore(m[4]).replace(/\bJ(\d)/g,'P$1')}],
+  [/^(.*) vs\. «(.+)» · (\d+) jugadores · Crisis \+(\d+) por turno del tablero$/,function(m){return m[1].replace(/J(\d)/g,'P$1')+' vs. «'+trCore(m[2])+'» · '+m[3]+' players · Crisis +'+m[4]+' per board turn'}],
+  [/^(\d+) jugadores$/,function(m){return m[1]+' players'}],
+  [/^(.+): nadie necesita curación\.$/,function(m){return trCore(m[1])+': no one needs healing.'}],
+  [/^(.+): la curación \((.+)\) no tiene efecto\.$/,function(m){return trCore(m[1])+': the healing ('+trCore(m[2])+') has no effect.'}],
+  [/^(.+): no se usa esta vez\.$/,function(m){return trCore(m[1])+': not used this time.'}],
+];
+function trCore(s){
+  if(!s)return s;
+  if(I18N_NOM[s])return I18N_NOM[s];
+  const n=trNorm(s);
+  const t=I18N_DIC[n.k];
+  if(t!==undefined)return trLlenar(t,n.names,n.nums);
+  for(let i=0;i<I18N_REGLAS.length;i++){const m=s.match(I18N_REGLAS[i][0]);if(m)return I18N_REGLAS[i][1](m)}
+  // Compuestos: se traduce cada tramo por separado
+  const seps=[' — ',' · ',' | ','. '];
+  for(let i=0;i<seps.length;i++){
+    if(s.indexOf(seps[i])>0){
+      const partes=s.split(seps[i]);
+      const tr=partes.map(function(p,k){
+        if(seps[i]==='. '&&k<partes.length-1)return trCore(p+'.').replace(/\.$/,'');
+        return trCore(p)});
+      if(tr.join(seps[i])!==s)return tr.join(seps[i]);
+    }
+  }
+  const pm=s.match(/^(.*?)\s*\(([^()]+)\)$/);
+  if(pm&&pm[1]){const a=trCore(pm[1]),b=trCore(pm[2]);if(a!==pm[1]||b!==pm[2])return a+' ('+b+')'}
+  // Último recurso: solo se cambian los nombres de cartas
+  return s.replace(I18N_RE_NOM,function(m){return I18N_NOM[m]||m});
+}
+function tr(s){
+  if(i18nEs()||s==null)return s;
+  s=String(s);
+  if(!/[A-Za-zÁÉÍÓÚáéíóúñÑ]/.test(s))return s;
+  const c=I18N.cache.get(s);if(c!==undefined)return c;
+  const lead=s.match(/^\s*/)[0],trail=s.match(/\s*$/)[0];
+  const core=s.trim().replace(/\s+/g,' ');
+  const r=lead+trCore(core)+trail;
+  if(I18N.cache.size>6000)I18N.cache.clear();
+  I18N.cache.set(s,r);
+  return r;
+}
+// ---------- Capa de pantalla ----------
+const I18N_ATTR=['title','aria-label','placeholder'];
+function i18nIgnorar(el,attr){return !el||el.closest&&el.closest(attr?'script,style,[data-noi18n]':'script,style,textarea,[data-noi18n]')}
+function i18nTexto(n){
+  const p=n.parentElement;if(!p||i18nIgnorar(p))return;
+  const v=n.nodeValue;const rec=I18N.orig.get(n);
+  if(rec&&v===rec.en)return;
+  const en=tr(v);
+  if(en!==v){I18N.orig.set(n,{es:v,en:en});n.nodeValue=en}
+  else if(rec)I18N.orig.delete(n);
+}
+function i18nAttrs(el){
+  if(i18nIgnorar(el,true))return;
+  for(let i=0;i<I18N_ATTR.length;i++){
+    const a=I18N_ATTR[i];if(!el.hasAttribute||!el.hasAttribute(a))continue;
+    const v=el.getAttribute(a);el.__i18n=el.__i18n||{};const rec=el.__i18n[a];
+    if(rec&&v===rec.en)continue;
+    const en=tr(v);if(en!==v){el.__i18n[a]={es:v,en:en};el.setAttribute(a,en)}
+  }
+}
+function i18nArbol(root){
+  if(!root)return;
+  if(root.nodeType===3)return i18nTexto(root);
+  if(root.nodeType!==1)return;
+  i18nAttrs(root);
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT|NodeFilter.SHOW_ELEMENT);
+  let n;while((n=w.nextNode())){if(n.nodeType===3)i18nTexto(n);else i18nAttrs(n)}
+}
+function i18nRestaurar(){
+  const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT|NodeFilter.SHOW_ELEMENT);
+  let n;while((n=w.nextNode())){
+    if(n.nodeType===3){const r=I18N.orig.get(n);if(r&&n.nodeValue===r.en)n.nodeValue=r.es;I18N.orig.delete(n)}
+    else if(n.__i18n){for(const a in n.__i18n){const r=n.__i18n[a];if(n.getAttribute(a)===r.en)n.setAttribute(a,r.es)}n.__i18n=null}
+  }
+}
+function i18nObservar(on){
+  if(!I18N.obs)I18N.obs=new MutationObserver(function(ms){
+    if(i18nEs())return;
+    for(let i=0;i<ms.length;i++){const m=ms[i];
+      if(m.type==='characterData')i18nTexto(m.target);
+      else if(m.type==='attributes')i18nAttrs(m.target);
+      else for(let k=0;k<m.addedNodes.length;k++)i18nArbol(m.addedNodes[k]);
+    }
+  });
+  I18N.obs.disconnect();
+  if(on)I18N.obs.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:I18N_ATTR});
+}
+// ---------- Caras generadas (Amenazas, Encuentros, Misión) ----------
+const _i18nFace=buildFace;
+buildFace=function(o,kind){
+  if(i18nEs())return _i18nFace(o,kind);
+  const c=Object.assign({},o);
+  ['n','rev','per','ext','extLab','tx'].forEach(function(k){if(c[k])c[k]=tr(c[k])});
+  let s=_i18nFace(c,kind);
+  [['>AMENAZA PRINCIPAL<','>MAIN THREAT<'],['>AMENAZA SECUNDARIA<','>SECONDARY THREAT<'],['>ESCENARIO<','>SCENARIO<'],['>ENCUENTRO<','>ENCOUNTER<'],
+   ['>VIDA<','>LIFE<'],['>Al revelarse: <','>On reveal: <'],['>Persistente: <','>Persistent: <']].forEach(function(p){s=s.split(p[0]).join(p[1])});
+  s=s.replace(/>Al revelarse: /g,'>On reveal: ').replace(/>Persistente: /g,'>Persistent: ');
+  return s;
+};
+function i18nRefrescarCaras(){
+  for(const k in FACE_CACHE)delete FACE_CACHE[k];
+  document.querySelectorAll('[data-sig]').forEach(function(e){e.removeAttribute('data-sig')});
+}
+// ---------- Exportaciones del registro ----------
+const _i18nTxt=textoRegistro;
+textoRegistro=function(){
+  const t=_i18nTxt();if(i18nEs())return t;
+  return t.split('\n').map(function(l){return tr(l)}).join('\n');
+};
+const _i18nCsv=csvRegistro;
+csvRegistro=function(){
+  if(i18nEs())return _i18nCsv();
+  const q=function(v){v=String(v==null?'':v);return /[",\n;]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v};
+  const filas=[['n','round','player','phase','type','text','time']];
+  REGISTRO.forEach(function(e){filas.push([e.n,e.ronda,(e.jugador||'J1').replace(/^J/,'P'),tr(FASE_NOM[e.fase]||e.fase),e.tipo.replace(/^lg-/,''),tr(e.texto),e.hora])});
+  return '﻿'+filas.map(function(f){return f.map(q).join(',')}).join('\r\n')+'\r\n';
+};
+// ---------- Cambio de idioma ----------
+function idioma(){return I18N.lang}
+function fijarIdioma(l,silencio){
+  l=l==='en'?'en':'es';
+  const cambia=l!==I18N.lang;
+  I18N.lang=l;lsSet('cos_idioma',l);
+  document.documentElement.lang=l;
+  document.body.classList.toggle('lang-en',l==='en');
+  if(cambia){
+    I18N.cache.clear();
+    i18nObservar(false);
+    i18nRestaurar();
+    i18nRefrescarCaras();
+  }
+  i18nObservar(l==='en');
+  try{render()}catch(e){}
+  try{actualizarSubtitulo()}catch(e){}
+  if(l==='en')i18nArbol(document.body);
+  try{const it=$id('mp-intro');if(it&&!it.hidden&&INTRO.escena&&INTRO.escena!=='idioma')mpEscena(INTRO.escena)}catch(e){}
+  try{if(!$id('onb').hidden)pintarGuia()}catch(e){}
+  i18nPintarSelectores();
+  if(cambia&&!silencio)aviso(l==='en'?'Language: English':'Idioma: Español');
+}
+function i18nPintarSelectores(){
+  document.querySelectorAll('[data-idioma]').forEach(function(b){
+    const on=b.getAttribute('data-idioma')===I18N.lang;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)});
+  const s=$id('cfg-idioma');if(s)s.value=I18N.lang;
+}
+// Escena de idioma en la intro (como la de jugadores y mazos)
+const _i18nEscena=mpEscena;
+mpEscena=function(nombre){
+  if(nombre!=='idioma')return _i18nEscena(nombre);
+  INTRO.escena='idioma';
+  const c=$id('mp-escena');c.className='mp-escena e-idioma';void c.offsetWidth;c.classList.add('entra');
+  const op=[{l:'es',t:'Español',d:'Textos, efectos, paneles y registro en español.'},{l:'en',t:'English',d:'Texts, effects, panels and log in English.'}];
+  c.innerHTML='<div class="mp-cab" data-noi18n><div class="mp-paso">Idioma · Language</div><h2>'+(I18N.lang==='en'?'Choose the game language':'Elige el idioma del juego')+'</h2>'+
+    '<p>'+(I18N.lang==='en'?'Card illustrations do not change. You can switch at any time from the header or the settings.':'Las ilustraciones de las cartas no cambian. Puedes cambiarlo cuando quieras desde la cabecera o la configuración.')+'</p></div>'+
+    '<div class="mp-nums mp-idiomas" data-noi18n>'+op.map(function(o,i){
+      return '<button type="button" class="mp-num'+(I18N.lang===o.l?' cur':'')+'" style="--i:'+i+'" data-foco onclick="fijarIdioma(\''+o.l+'\');mpEscena(\'titulo\')">'+
+        '<span class="mp-big">'+o.l.toUpperCase()+'</span><span class="mp-nt">'+o.t+'</span><span class="mp-nd">'+o.d+'</span></button>'}).join('')+'</div>'+
+    '<div class="mp-pie" data-noi18n><button type="button" class="mp-link" onclick="mpEscena(\'titulo\')">← '+(I18N.lang==='en'?'Back':'Volver')+'</button></div>';
+  const f=c.querySelector('.mp-num.cur');if(f)setTimeout(function(){try{f.focus()}catch(e){}},30);
+};
+// Botón de idioma en la pantalla de título
+const _i18nTitulo=mpHtmlTitulo;
+mpHtmlTitulo=function(){
+  return _i18nTitulo().replace('<div class="mp-mini">',
+    '<div class="mp-mini mp-idioma-tit" data-noi18n><button type="button" class="mp-link" onclick="mpEscena(\'idioma\')">🌐 '+(I18N.lang==='en'?'Language: English':'Idioma: Español')+'</button></div><div class="mp-mini">');
+};
+// Teclado en la escena de idioma
+document.addEventListener('keydown',function(ev){
+  const el=$id('mp-intro');if(!el||el.hidden||INTRO.escena!=='idioma')return;
+  if(ev.key==='ArrowLeft'||ev.key==='ArrowRight'){ev.preventDefault();const b=[...document.querySelectorAll('.mp-idiomas .mp-num')];const i=b.indexOf(document.activeElement);const k=(i+1)%b.length;b.forEach(function(x,j){x.classList.toggle('cur',j===k)});b[k].focus()}
+  if(ev.key==='Escape'){ev.preventDefault();mpEscena('titulo')}
+});
+// Arranque: idioma guardado
+(function(){const g=lsGet('cos_idioma');if(g==='en')I18N.lang='en'})();
+mpArranque=(function(o){return function(){o();fijarIdioma(I18N.lang,true)}})(mpArranque);
 
 mpArranque();
 </script>
